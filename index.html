@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>سليم — دار للعقار</title>
+<meta name="description" content="سليم دار لتسويق العقار: تصوير سينمائي، جولات افتراضية، وتسويق يبيع بأعلى سعر. تجربة لا تشبه المواقع التقليدية.">
+<meta property="og:title" content="سليم — دار للعقار">
+<meta property="og:description" content="تسويق عقاري بأسلوب أثير — صورة، عمق، وحركة.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80">
+<meta name="theme-color" content="#070605">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2048%2048'%3E%3Crect%20width='48'%20height='48'%20fill='%23070605'/%3E%3Cpath%20d='M24%209%2039%2022%2039%2040%209%2040%209%2022Z'%20fill='none'%20stroke='%23C9B68C'%20stroke-width='2'/%3E%3Cpath%20d='M18%2040%20V28%20H30%20V40'%20fill='none'%20stroke='%23C9B68C'%20stroke-width='2'/%3E%3Ccircle%20cx='24'%20cy='16'%20r='3'%20fill='none'%20stroke='%23C9B68C'%20stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;400;600;800&family=IranNastaliq&family=Vazirmatn:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070605;--ink2:#0b0a08;--ink3:#101010;
+  --cream:#F2EDE3;--cream-d:#D8D2C4;--muted:#8C8678;--muted2:#5d594f;
+  --gold:#C9B68C;--gold-2:#E7D6AE;--line:rgba(242,237,227,.10);--line-g:rgba(201,182,140,.22);
+  --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --font-body:'Vazirmatn','Noto Naskh Arabic',sans-serif;
+  --font-per:'IranNastaliq','Estedad',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-body);line-height:1.85;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.brand{font-family:var(--font-per),sans-serif}
+.serif{font-family:'Playfair Display',serif}
+.num,.en{font-family:'Inter',sans-serif;direction:ltr;display:inline-block}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+section{position:relative}
+
+/* film grain + frame */
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.frame{position:fixed;inset:14px;z-index:85;pointer-events:none;border:1px solid rgba(201,182,140,.16)}
+.frame:before,.frame:after{content:"";position:absolute;width:10px;height:10px;border:1px solid var(--gold)}
+.frame:before{top:-1px;right:-1px;border-left:none;border-bottom:none}
+.frame:after{bottom:-1px;left:-1px;border-right:none;border-top:none}
+.sidelabel{position:fixed;top:50%;left:20px;transform:translateY(-50%);z-index:86;writing-mode:vertical-rl;font-family:'Inter';font-size:11px;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;pointer-events:none}
+.sidelabel b{color:var(--gold);font-weight:500}
+
+/* progress */
+.progress{position:fixed;top:0;right:0;left:0;height:2px;z-index:95;background:linear-gradient(90deg,var(--gold),var(--gold-2));transform:scaleX(0);transform-origin:right;mix-blend-mode:screen}
+
+/* cursor */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+.cursor-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--cream)}
+.cursor-ring{width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(242,237,227,.5);transition:width .3s,height .3s,margin .3s,border-color .3s,background .3s}
+.cursor-ring.hot{width:64px;height:64px;margin:-32px 0 0 -32px;border-color:var(--gold);background:rgba(201,182,140,.08)}
+.cursor-ring .lbl{position:absolute;inset:0;display:grid;place-items:center;font-family:'Inter';font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:0;transition:opacity .3s}
+.cursor-ring.hot .lbl{opacity:1;mix-blend-mode:normal}
+@media(hover:none){.cursor-dot,.cursor-ring{display:none}body{cursor:auto}.magnetic,.idx-row,.work,.price-card,.btn-gold,.btn-line{cursor:pointer}}
+
+/* loader */
+#loader{position:fixed;inset:0;z-index:99999;background:var(--ink);display:grid;place-items:center;transition:opacity .9s ease,visibility .9s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .lwrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+#loader .lmark{width:76px;height:76px;border-radius:50%;border:1px solid var(--line-g);display:grid;place-items:center;color:var(--gold);font-family:var(--font-per);font-weight:300;font-size:34px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loader .ltxt{font-family:'Inter';letter-spacing:.4em;font-size:10px;color:var(--muted);text-transform:uppercase}
+#loader .lbar{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-2));width:0;animation:lbar 1.6s ease forwards}
+@keyframes lbar{to{width:100%}}
+
+/* utilities */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.kw{display:inline-block;opacity:0;transform:translateY(.5em) rotate(2deg);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.kw.in{opacity:1;transform:none}
+.sec-no{font-family:'Inter';font-size:12px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.sec-no:before{content:"";width:40px;height:1px;background:var(--gold);opacity:.6}
+.btn-gold{display:inline-block;background:var(--cream);color:#0a0a08;font-family:var(--font-per);font-weight:600;font-size:15px;padding:14px 32px;border-radius:999px;cursor:none;transition:transform .35s var(--spring),background .35s}
+.btn-gold:hover{transform:translateY(-3px);background:var(--gold-2)}
+.btn-line{display:inline-block;border:1px solid var(--line-g);color:var(--cream);font-family:var(--font-per);font-size:15px;padding:14px 32px;border-radius:999px;cursor:none;transition:.4s var(--ease)}
+.btn-line:hover{background:rgba(201,182,140,.08)}
+.hero-inner{will-change:transform}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion: reduce){.rv,.kw{transition:none!important}.stat-marquee,.scroll-cue .ln,#loader .lmark{animation:none!important}html{scroll-behavior:auto!important}}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:80;padding:22px 0;transition:padding .4s var(--ease)}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-weight:300;font-size:21px;letter-spacing:.02em}
+.brand .mk{width:34px;height:34px;border-radius:50%;border:1px solid var(--line-g);display:grid;place-items:center;color:var(--gold);font-size:18px;font-weight:300}
+.brand small{display:block;font-family:'Inter';font-size:8px;letter-spacing:.34em;color:var(--muted);font-weight:400;margin-top:-2px}
+.brand-logo{height:34px;width:auto;object-fit:contain;mix-blend-mode:lighten;display:block}
+.foot .brand-logo{height:44px}
+@media(max-width:760px){.brand-logo{height:30px}.foot .brand-logo{height:38px}}
+.nav-links{display:flex;gap:34px;font-size:14px;color:var(--muted)}
+.nav-links a{position:relative;padding:4px 0;transition:color .3s}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:after{content:"";position:absolute;bottom:0;right:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+.nav-links a:hover:after{width:100%}
+
+/* hero */
+.hero{height:100vh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(.8) contrast(1.05) brightness(.55)}
+.hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,6,5,.55) 0%,rgba(7,6,5,.2) 40%,rgba(7,6,5,.92) 100%),radial-gradient(ellipse at 30% 80%,rgba(201,182,140,.10),transparent 55%)}
+canvas#goldfield{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.hero-inner{position:relative;z-index:3;width:100%;padding-bottom:8vh}
+.hero .kicker2{font-family:'Inter';font-size:12px;letter-spacing:.34em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:18px}
+.masthead{font-weight:400;line-height:1.08;font-size:clamp(48px,11vw,150px);letter-spacing:-.01em}
+.masthead .out{color:transparent;-webkit-text-stroke:1.4px var(--cream);display:inline-block}
+.masthead .ac{color:var(--gold)}
+.hero-sub{margin-top:26px;max-width:520px;color:var(--cream-d);font-size:clamp(16px,1.6vw,19px)}
+.hero-cta{margin-top:34px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.scroll-cue{position:absolute;bottom:7vh;left:40px;z-index:3;font-family:'Inter';font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.scroll-cue .ln{width:54px;height:1px;background:var(--muted);position:relative;overflow:hidden}
+.scroll-cue .ln:after{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{50%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+/* manifesto */
+.manifesto{padding:170px 0}
+.manifesto p{font-family:var(--font-per);font-weight:300;font-size:clamp(26px,4.2vw,52px);line-height:1.5;max-width:1000px}
+.manifesto .kw{color:var(--cream)}
+.manifesto .hl{color:var(--gold)}
+
+/* services index */
+.services{padding:120px 0;border-top:1px solid var(--line)}
+.idx{list-style:none;margin-top:50px;border-top:1px solid var(--line)}
+.idx-row{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:24px;padding:34px 8px;border-bottom:1px solid var(--line);position:relative;cursor:none;transition:padding .5s var(--ease),color .4s}
+.idx-row .n{font-family:'Inter';font-size:14px;color:var(--muted)}
+.idx-row .t{font-family:var(--font-per);font-weight:400;font-size:clamp(20px,2.6vw,34px);transition:transform .5s var(--ease),color .4s}
+.idx-row .t small{display:block;font-family:'Noto Naskh Arabic';font-weight:400;font-size:14px;color:var(--muted);margin-top:4px}
+.idx-row .go{font-size:22px;color:var(--muted);transition:transform .5s var(--ease),color .4s}
+.idx-row:hover{padding-right:28px}
+.idx-row:hover .t{color:var(--gold);transform:translateX(-6px)}
+.idx-row:hover .go{color:var(--gold);transform:translateX(-10px)}
+.idx-row:hover .n{color:var(--gold)}
+#peek{position:fixed;width:300px;height:380px;z-index:70;pointer-events:none;opacity:0;transform:scale(.9) rotate(-3deg);transition:opacity .4s var(--ease),transform .5s var(--ease);border-radius:8px;overflow:hidden;border:1px solid var(--line-g);background:linear-gradient(135deg,#1a1409,#0a0a0a);will-change:transform}
+#peek img{width:100%;height:100%;object-fit:cover}
+
+/* horizontal works */
+.works{height:360vh;background:var(--ink2)}
+.works-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.works-head{position:absolute;top:9vh;right:40px;z-index:4}
+.works-head .sec-no{margin-bottom:10px}
+.works-track{display:flex;gap:30px;height:62vh;align-items:center;padding:0 40px;will-change:transform}
+.work{flex:0 0 auto;width:min(70vh,560px);height:100%;position:relative;border-radius:6px;overflow:hidden;background:var(--ink3);transition:transform .55s var(--ease)}
+.work:hover{transform:translateY(-9px)}
+.work img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(.9);transition:transform .8s var(--ease),filter .6s}
+.work:hover img{transform:scale(1.05);filter:brightness(.95)}
+.work .meta{position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(0deg,rgba(7,6,5,.9),transparent);z-index:2}
+.work .meta .city{font-family:'Inter';font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.work .meta h3{font-size:22px;font-weight:400;margin-top:6px}
+.work .meta .price{font-family:'Inter';font-size:15px;color:var(--cream);margin-top:4px}
+.work .idx-n{position:absolute;top:18px;right:20px;z-index:2;font-family:'Playfair Display';font-style:italic;font-size:30px;color:var(--cream);mix-blend-mode:difference}
+
+/* 3D */
+.show3d{padding:150px 0;background:var(--ink);overflow:hidden}
+.show3d .scene-wrap{position:relative;height:560px;margin-top:40px}
+.show3d canvas{position:absolute;inset:0;width:100%;height:100%;cursor:none}
+.show3d .hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:'Inter';font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;z-index:2;pointer-events:none}
+.show3d .hint b{color:var(--gold)}
+
+/* stat band */
+.stat-band{padding:130px 0;background:var(--ink2);overflow:hidden}
+.stat-marquee{display:flex;gap:60px;width:max-content;animation:scrollx 30s linear infinite;align-items:center}
+.stat-marquee:hover{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.stat-item{display:flex;align-items:baseline;gap:14px;white-space:nowrap}
+.stat-item b{font-family:'Playfair Display';font-weight:700;font-size:clamp(46px,7vw,96px);color:var(--cream)}
+.stat-item b .u{color:var(--gold)}
+.stat-item span{font-size:15px;color:var(--muted);max-width:160px}
+.stat-item .dot{display:none}
+
+/* video statement */
+.vband{position:relative;height:80vh;min-height:520px;overflow:hidden;display:grid;place-items:center}
+.vband video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.5)}
+.vband .vo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,5,.6),rgba(7,6,5,.45)),radial-gradient(ellipse at center,rgba(201,182,140,.08),transparent 60%)}
+.vband .vc{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:900px}
+.vband .vc .q{font-family:var(--font-per);font-weight:300;font-size:clamp(26px,4vw,50px);line-height:1.45}
+.vband .vc .q em{color:var(--gold);font-style:normal}
+
+/* testimonial */
+.quote-sec{padding:170px 0}
+.bigquote{font-family:var(--font-per);font-style:normal;font-weight:400;font-size:clamp(30px,5vw,68px);line-height:1.5;max-width:1100px}
+.bigquote .mk{color:var(--gold);font-size:1.4em;line-height:0}
+.qby{margin-top:40px;display:flex;align-items:center;gap:16px}
+.qby .av{width:52px;height:52px;border-radius:50%;background:var(--gold);color:#0a0a08;display:grid;place-items:center;font-family:var(--font-per);font-weight:300;font-size:22px}
+.qby b{font-family:var(--font-per);font-weight:400;font-size:17px;display:block}
+.qby span{color:var(--muted);font-size:13px}
+
+/* pricing */
+.pricing{padding:130px 0;border-top:1px solid var(--line)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:54px;border:1px solid var(--line)}
+.price-card{padding:44px 34px;position:relative;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.price-card:last-child{border-left:none}
+.price-card.hot{background:linear-gradient(180deg,rgba(201,182,140,.06),transparent 50%)}
+.price-card .tag{font-family:'Inter';font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:18px;display:block}
+.price-card h3{font-size:22px;font-weight:400}
+.price-card .amount{font-family:'Playfair Display';font-weight:700;font-size:clamp(34px,4vw,46px);margin:18px 0 6px}
+.price-card .amount small{font-family:'Noto Naskh Arabic';font-size:14px;color:var(--muted);font-weight:400}
+.price-card ul{list-style:none;margin:24px 0 30px;flex:1}
+.price-card li{color:var(--cream-d);font-size:15px;padding:11px 0;border-bottom:1px solid var(--line);display:flex;gap:10px}
+.price-card li:before{display:none}
+.price-card .btn-line,.price-card .btn-gold{text-align:center}
+
+/* contact */
+.contact{padding:150px 0;border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:50px}
+.contact .info h2{font-family:var(--font-per);font-weight:300;font-size:clamp(30px,4.5vw,56px);line-height:1.3}
+.contact .info h2 em{color:var(--gold);font-style:normal}
+.clist{list-style:none;margin-top:36px;display:grid;gap:18px}
+.clist li{display:flex;gap:16px;align-items:center;color:var(--cream-d)}
+.clist .ci{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-g);display:grid;place-items:center;font-size:18px;color:var(--gold)}
+.form{background:var(--ink2);border:1px solid var(--line-g);border-radius:14px;padding:38px}
+.form input,.form textarea,.form select{width:100%;background:transparent;border:1px solid var(--line);border-radius:10px;padding:15px 17px;color:var(--cream);font-family:'Noto Naskh Arabic';font-size:15px;margin-bottom:15px;outline:none;transition:.3s;cursor:none}
+.form input:focus,.form textarea:focus,.form select:focus{border-color:var(--gold)}
+.form textarea{resize:vertical;min-height:120px}
+.form button{width:100%;margin-top:6px}
+.contact .note{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:90px 0 40px;overflow:hidden}
+.foot-monogram{font-family:var(--font-per);font-weight:800;font-size:clamp(90px,22vw,320px);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--line-g);text-align:center;letter-spacing:-.04em;user-select:none}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;margin:60px 0 40px}
+.foot-grid h4{font-family:var(--font-per);font-weight:400;font-size:14px;color:var(--cream);margin-bottom:16px}
+.foot-grid a{display:block;color:var(--muted);padding:5px 0;font-size:14px;transition:.3s}
+.foot-grid a:hover{color:var(--gold)}
+.foot-grid p{color:var(--muted);font-size:14px;margin-top:14px;max-width:320px}
+.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted2);font-size:12px;font-family:'Inter'}
+
+/* ===== Creative pass ===== */
+.mono{width:30px;height:30px;display:block}
+.mono path{stroke:var(--gold);stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:240;animation:draw 2.2s var(--ease) .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.lmono{width:78px;height:78px}
+.lmono path{stroke:var(--gold);stroke-width:1.4;fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:240;animation:draw 2.4s var(--ease) forwards}
+.mono circle,.lmono circle{stroke:var(--gold);stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw 2.2s var(--ease) .5s forwards}
+
+#loader .lwrap{flex-direction:column}
+.lpct{font-family:'Inter';font-size:13px;letter-spacing:.2em;color:var(--cream);margin-top:6px}
+.lpct span:last-child{color:var(--gold)}
+
+.clip{clip-path:inset(0 0 100% 0);transition:clip-path 1.2s var(--ease)}
+.clip.in{clip-path:inset(0 0 0 0)}
+
+.ghost{padding:90px 0;overflow:hidden;background:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ghost-track{display:flex;gap:40px;width:max-content;animation:scrollx 26s linear infinite;align-items:center}
+.ghost:hover .ghost-track{animation-play-state:paused}
+.ghost-track span{font-family:var(--font-per);font-weight:800;font-size:clamp(60px,12vw,150px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(201,182,140,.16);letter-spacing:-.02em;white-space:nowrap}
+.ghost-track span em{font-style:normal;color:var(--gold);-webkit-text-stroke:0}
+
+.masthead .out{transition:color .45s var(--ease),-webkit-text-stroke .45s var(--ease)}
+.masthead .out:hover{color:var(--gold);-webkit-text-stroke:0}
+
+.form.done{text-align:center;padding:50px 30px}
+.form.done .ok{font-family:var(--font-per);font-weight:300;font-size:26px;color:var(--cream);margin-bottom:10px}
+.form.done .ok b{color:var(--gold)}
+.form.done p{color:var(--muted)}
+
+.modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s}
+.modal.open{opacity:1;visibility:visible}
+.modal-back{position:absolute;inset:0;background:rgba(4,4,3,.84);backdrop-filter:blur(10px)}
+.modal-card{position:relative;z-index:2;width:min(980px,100%);max-height:88vh;overflow:hidden;border-radius:14px;border:1px solid var(--line-g);background:var(--ink2);display:grid;grid-template-columns:1.05fr 1fr;transform:translateY(34px) scale(.98);opacity:0;transition:transform .6s var(--ease),opacity .6s var(--ease)}
+.modal.open .modal-card{transform:none;opacity:1}
+.modal-x{position:absolute;top:14px;left:14px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid var(--line-g);background:rgba(0,0,0,.45);color:var(--cream);cursor:none;display:grid;place-items:center;font-size:16px;transition:.3s}
+.modal-x:hover{background:var(--gold);color:#0a0a08}
+.modal-img{position:relative;min-height:340px;background:#000}
+.modal-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.modal-info{padding:40px;overflow:auto}
+.m-city{font-family:'Inter';font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+.modal-info h3{font-size:clamp(23px,3vw,32px);font-weight:400;margin:10px 0 6px;line-height:1.3}
+.m-price{font-family:'Playfair Display';font-weight:700;font-size:30px;color:var(--cream);margin-bottom:20px}
+.m-specs{list-style:none;display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+.m-specs li{border:1px solid var(--line-g);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--cream-d)}
+.m-story{color:var(--muted);font-size:15px;line-height:1.95;margin-bottom:26px}
+@media(max-width:760px){.modal-card{grid-template-columns:1fr;max-height:90vh;overflow:auto}.modal-img{min-height:240px}}
+
+.filters{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.fbtn{font-family:var(--font-per);font-size:13px;color:var(--muted);background:transparent;border:1px solid var(--line-g);padding:8px 18px;border-radius:999px;cursor:none;transition:.35s var(--ease)}
+.fbtn:hover{color:var(--cream)}
+.fbtn.active{background:var(--gold);color:#0a0a08;border-color:var(--gold)}
+.btn-lang{margin-left:14px;font-family:'Inter';font-size:12px;letter-spacing:.1em;color:var(--cream);background:transparent;border:1px solid var(--line-g);padding:9px 16px;border-radius:999px;cursor:none;transition:.35s var(--ease)}
+.btn-lang:hover{background:var(--gold);color:#0a0a08}
+.pano{position:absolute;inset:0;overflow:hidden;cursor:grab;z-index:3;background:#000;display:none}
+.pano.on{display:block}
+.pano.grab{cursor:grabbing}
+.pano > img{height:100%;width:auto;min-width:175%;max-width:none;display:block;position:relative;user-select:none;pointer-events:none}
+.pano-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:'Inter';font-size:10px;letter-spacing:.18em;color:var(--cream);background:rgba(0,0,0,.55);padding:6px 14px;border-radius:999px;pointer-events:none;text-transform:uppercase;white-space:nowrap}
+.mtour{display:inline-block;margin-top:6px;font-family:'Inter';font-size:11px;letter-spacing:.08em;color:var(--gold);border:1px solid var(--line-g);padding:8px 16px;border-radius:999px;cursor:none;transition:.3s}
+.mtour:hover{background:var(--gold);color:#0a0a08}
+.modal-img{position:relative}
+
+/* ===== visual richness pass ===== */
+.hero video{animation:kenburns 22s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.14)}}
+#trail{position:fixed;inset:0;z-index:60;pointer-events:none}
+
+.ba{padding:140px 0;border-top:1px solid var(--line)}
+.ba-slider{position:relative;height:min(70vh,620px);border-radius:12px;overflow:hidden;border:1px solid var(--line-g);margin-top:40px;cursor:ew-resize}
+.ba-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-before{z-index:2;clip-path:inset(0 50% 0 0);filter:saturate(.7) brightness(.85)}
+.ba-tag{position:absolute;bottom:16px;z-index:4;font-family:'Inter';font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:999px;background:rgba(0,0,0,.55);color:var(--cream)}
+.ba-tag.a{right:16px;color:var(--gold)}
+.ba-tag.b{left:16px}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);z-index:3;transform:translateX(-1px)}
+.ba-handle:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--gold);box-shadow:0 4px 20px rgba(201,182,140,.5)}
+.ba-handle:before{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#0a0a08;font-size:16px;z-index:1}
+
+.feed{padding:140px 0;border-top:1px solid var(--line)}
+.feed-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;margin-top:44px}
+.feed-grid figure{position:relative;overflow:hidden;border-radius:8px;background:var(--ink3);margin:0}
+.feed-grid figure.tall{grid-row:span 2}
+.feed-grid figure.wide{grid-column:span 2}
+.feed-grid img,.feed-grid video{width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(.9);transition:transform .8s var(--ease),filter .6s}
+.feed-grid figure:hover img,.feed-grid figure:hover video{transform:scale(1.07);filter:brightness(1)}
+.feed-grid figcaption{position:absolute;left:0;bottom:0;padding:16px;font-family:'Inter';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);background:linear-gradient(0deg,rgba(7,6,5,.85),transparent);width:100%;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.feed-grid figure:hover figcaption{opacity:1;transform:none}
+
+.tesi{padding:160px 0;border-top:1px solid var(--line)}
+.qwrap{position:relative;max-width:1100px;margin-top:40px;min-height:300px}
+.qslide{position:absolute;inset:0;opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease);pointer-events:none}
+.qslide.on{opacity:1;transform:none;pointer-events:auto}
+.qslide .qbig{font-family:var(--font-per);font-weight:400;font-size:clamp(26px,4vw,56px);line-height:1.4}
+.qslide .qbig .mk{color:var(--gold);font-size:1.3em;line-height:0}
+.qslide .qby{margin-top:34px;display:flex;align-items:center;gap:16px}
+.qslide .av{width:52px;height:52px;border-radius:50%;background:var(--gold);color:#0a0a08;display:grid;place-items:center;font-family:var(--font-per);font-size:24px}
+.qslide .qby b{font-family:var(--font-body);font-weight:600;font-size:16px;display:block}
+.qslide .qby span{color:var(--muted);font-size:13px}
+.qdots{display:flex;gap:10px;margin-top:40px}
+.qdots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--muted);background:transparent;cursor:none;transition:.3s;padding:0}
+.qdots button.on{background:var(--gold);border-color:var(--gold)}
+.qprev,.qnext{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid var(--line-g);background:rgba(0,0,0,.3);color:var(--cream);font-size:18px;cursor:none;z-index:5;transition:.3s}
+.qprev{left:-10px}.qnext{right:-10px}
+.qprev:hover,.qnext:hover{background:var(--gold);color:#0a0a08}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c9b68c,#f0e2b0);transform:scaleX(0);transform-origin:left center;z-index:96;pointer-events:none}
+/* process timeline */
+.proc{padding:120px 0;background:linear-gradient(180deg,#0a0a0a,#070707)}
+.proc-steps{position:relative;margin-top:56px;padding:0}
+.proc-steps:after{content:"";position:absolute;top:14px;width:2px;right:11px;height:var(--pp,0%);background:linear-gradient(180deg,#c9b68c,#f0e2b0);transition:height .15s linear;box-shadow:0 0 14px rgba(201,182,140,.55);z-index:0}
+.step{position:relative;display:flex;gap:24px;align-items:flex-start;padding:28px 0 28px 0;opacity:.3;transform:translateY(22px);transition:.6s}
+.step.on{opacity:1;transform:none}
+.step .n{position:relative;z-index:1;flex:0 0 24px;width:24px;height:24px;border-radius:50%;border:1px solid var(--gold);background:#0a0a0a;color:var(--gold);font-size:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-body)}
+.step.on .n{background:var(--gold);color:#0a0a0a;box-shadow:0 0 20px rgba(201,182,140,.6)}
+.step .body h3{font-family:var(--font-per);font-weight:400;font-size:clamp(20px,2.6vw,26px);margin-bottom:8px;line-height:1.4}
+.step .body p{color:rgba(245,240,232,.6);max-width:560px;line-height:1.8;font-size:15px}
+/* faq */
+.faq{padding:120px 0;background:#070707}
+.faq-list{margin-top:50px;max-width:840px}
+.faq-item{border-bottom:1px solid rgba(201,182,140,.18)}
+.faq-q{width:100%;background:none;border:0;color:#f5f0e8;text-align:right;font-family:var(--font-per);font-weight:400;font-size:clamp(18px,2.4vw,24px);padding:26px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.faq-q .ic{flex:0 0 auto;width:26px;height:26px;position:relative;transition:.3s}
+.faq-q .ic:before,.faq-q .ic:after{content:"";position:absolute;background:var(--gold);transition:.3s}
+.faq-q .ic:before{top:12px;left:0;width:26px;height:2px}
+.faq-q .ic:after{top:0;left:12px;width:2px;height:26px}
+.faq-item.open .ic:after{transform:scaleY(0)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease,opacity .4s;opacity:0}
+.faq-item.open .faq-a{max-height:320px;opacity:1}
+.faq-a p{padding:0 0 26px;color:rgba(245,240,232,.62);line-height:1.9;max-width:700px;font-size:15px}
+/* marquee */
+.marq{padding:72px 0;background:#070707;border-top:1px solid rgba(201,182,140,.12);border-bottom:1px solid rgba(201,182,140,.12);overflow:hidden}
+.marq-h{text-align:center;color:rgba(245,240,232,.45);font-size:12px;letter-spacing:3px;margin-bottom:36px;font-family:var(--font-body)}
+.marq-track{display:flex;gap:64px;width:max-content;animation:marq 30s linear infinite}
+.marq:hover .marq-track{animation-play-state:paused}
+.marq-track span{font-family:var(--font-per);font-weight:400;font-size:clamp(22px,3vw,34px);color:rgba(245,240,232,.3);white-space:nowrap;transition:.3s}
+.marq-track span:hover{color:var(--gold)}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* mobile nav + to-top */
+.nav-toggle{display:none;flex-direction:column;gap:5px;width:42px;height:42px;border:1px solid var(--line-g);border-radius:10px;background:rgba(0,0,0,.3);cursor:pointer;align-items:center;justify-content:center;margin-left:10px}
+.nav-toggle span{width:18px;height:2px;background:var(--gold);transition:.3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{position:fixed;inset:0;background:rgba(7,7,7,.97);backdrop-filter:blur(10px);z-index:78;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:.4s}
+.mobile-nav.open{opacity:1;pointer-events:auto}
+.mobile-nav a{font-family:var(--font-per);font-size:30px;color:#f5f0e8;text-decoration:none;transition:.3s}
+.mobile-nav a:hover{color:var(--gold)}
+.mobile-nav a.btn-gold{font-family:var(--font-body);font-size:18px;padding:12px 32px;border-radius:40px;margin-top:10px}
+.to-top{position:fixed;bottom:26px;right:26px;z-index:80;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-g);background:rgba(10,10,8,.7);color:var(--gold);font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:.35s}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+
+/* coverage map */
+.coverage{padding:120px 0;background:radial-gradient(120% 120% at 50% 0%,#0c0b09,#070707)}
+.map{position:relative;margin:50px auto 0;aspect-ratio:16/9;max-width:920px;background:radial-gradient(60% 60% at 50% 45%,rgba(201,182,140,.09),transparent);border:1px solid rgba(201,182,140,.14);border-radius:18px;overflow:hidden}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map line{stroke:rgba(201,182,140,.22);stroke-width:.3}
+.city .ring{fill:none;stroke:var(--gold);stroke-width:.5;opacity:.5;transform-box:fill-box;transform-origin:center;animation:pulse 2.8s ease-out infinite}
+.city .dot{fill:var(--gold);transition:.3s}
+.city:hover .dot{r:1.9;filter:drop-shadow(0 0 4px var(--gold))}
+.city text{fill:var(--cream);font-family:var(--font-per);font-size:2.2px;opacity:0;transition:.3s;pointer-events:none}
+.city:hover text{opacity:1}
+@keyframes pulse{0%{transform:scale(.4);opacity:.7}80%,100%{transform:scale(2.6);opacity:0}}
+.map-legend{position:absolute;left:16px;bottom:14px;display:flex;flex-wrap:wrap;gap:8px;max-width:74%}
+.map-legend span{font-size:11px;color:rgba(245,240,232,.5);border:1px solid rgba(201,182,140,.2);padding:3px 11px;border-radius:20px;transition:.3s}
+.map-legend span:hover{color:var(--gold);border-color:var(--gold)}
+.feed .filters{justify-content:center;margin:34px 0 0}
+.feed .filters .fbtn{font-family:var(--font-body)}
+
+/* hero sweep */
+.hero{overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 32%,rgba(201,182,140,.10) 47%,rgba(231,214,174,.18) 50%,rgba(201,182,140,.10) 53%,transparent 68%);background-size:280% 280%;animation:sweep 9s ease-in-out infinite;mix-blend-mode:screen}
+@keyframes sweep{0%{background-position:130% 0}100%{background-position:-30% 0}}
+/* reel */
+.reel{padding:120px 0;background:#070707}
+.reel-box{position:relative;margin:46px auto 0;aspect-ratio:16/9;max-width:980px;border-radius:16px;overflow:hidden;border:1px solid rgba(201,182,140,.18);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.reel-box video{width:100%;height:100%;object-fit:cover;filter:saturate(.95) brightness(.9);cursor:pointer}
+.reel-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;border:1px solid var(--gold);background:rgba(10,10,8,.55);color:var(--gold);font-size:24px;cursor:pointer;backdrop-filter:blur(4px);transition:.35s;display:grid;place-items:center}
+.reel-play:hover{background:var(--gold);color:#0a0a08;transform:translate(-50%,-50%) scale(1.06)}
+.reel-play.on{background:var(--gold);color:#0a0a08}
+.reel-cap{position:absolute;left:16px;bottom:14px;font-family:'Inter';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.7);background:rgba(7,6,5,.5);padding:6px 12px;border-radius:20px}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+  .hero:after{display:none}
+  .reel-box video{filter:none}
+  .rv{opacity:1!important;transform:none!important}
+}
+@media(max-width:1000px){.feed-grid{grid-template-columns:repeat(2,1fr)}.feed-grid figure.wide{grid-column:span 2}}
+@media(max-width:760px){.feed-grid{grid-template-columns:1fr 1fr}.ba-slider{height:52vh}}
+
+@media(max-width:1000px){.contact-grid{grid-template-columns:1fr;gap:40px}.foot-grid{grid-template-columns:1fr 1fr}.works-track{height:54vh}.show3d .scene-wrap{height:400px}}
+@media(max-width:820px){.sidelabel{display:none}.mono.big{width:26px;height:26px}}
+@media(max-width:760px){.wrap{padding:0 22px}.nav-links{display:none}.nav-toggle{display:flex}.idx-row{grid-template-columns:50px 1fr}.idx-row .go{display:none}#peek{display:none}.price-grid{grid-template-columns:1fr}.price-card{border-left:none;border-bottom:1px solid var(--line)}.price-card:last-child{border-bottom:none}.scroll-cue{display:none}.manifesto{padding:110px 0}.sidelabel{display:none}.foot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loader">  <div class="lwrap">
+  <svg class="lmono" viewBox="0 0 48 48"><path d="M24 9 L39 22 L39 40 L9 40 L9 22 Z"/><path d="M18 40 V28 H30 V40"/><path d="M21 16 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0"/></svg>
+  <div class="ltxt">SALEM · EST. 2014</div>
+  <div class="lpct"><span id="lpct">0</span><span>%</span></div>
+</div><div class="lbar"></div></div>
+<div class="grain"></div>
+<div class="frame"></div>
+<canvas id="trail"></canvas>
+<div class="sidelabel">دار سليم للعقار — <b>SALEM</b></div>
+<div class="progress" id="progress"></div>
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"><span class="lbl" id="cLbl"></span></div>
+
+<nav id="nav"><div class="wrap nav-in">
+  <div class="brand"><img class="brand-logo" src="logo-salem.png" alt="سليم — دار للعقار"></div>
+  <div class="nav-links">
+    <a href="#manifesto" data-i18n="nav_vision">رؤيتنا</a><a href="#services" data-i18n="nav_services">خدماتنا</a><a href="#works" data-i18n="nav_works">أعمال</a><a href="#pricing" data-i18n="nav_pricing">باقات</a><a href="#contact" data-i18n="nav_contact">تواصل</a>
+  </div>
+  <div style="display:flex;align-items:center">
+    <button class="btn-lang magnetic" id="langToggle" data-cursor="">EN</button>
+    <a class="btn-gold magnetic" href="#contact" data-cursor="احجز" data-i18n="nav_start" style="margin-left:14px">ابدأ</a>
+    <button class="nav-toggle" id="navToggle" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</div></nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#manifesto" data-i18n="nav_vision">رؤيتنا</a>
+  <a href="#services" data-i18n="nav_services">خدماتنا</a>
+  <a href="#works" data-i18n="nav_works">أعمال</a>
+  <a href="#pricing" data-i18n="nav_pricing">باقات</a>
+  <a href="#contact" data-i18n="nav_contact">تواصل</a>
+  <a class="btn-gold" href="#contact" data-i18n="nav_start">ابدأ</a>
+</div>
+
+<header class="hero">
+  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"><source src="https://assets.mixkit.co/videos/27543/27543-720.mp4" type="video/mp4"></video>
+  <div class="veil"></div>
+  <canvas id="goldfield"></canvas>
+  <div class="hero-inner wrap">
+    <span class="kicker2 rv" data-i18n="kicker">مكتب سليم لتسويق العقاري</span>
+    <h1 class="masthead rv" style="--d:.1s" data-i18n="masthead">نبيع <span class="out">العقار</span><br><span class="ac">كأثر</span> لا كسلعة</h1>
+    <p class="hero-sub rv" style="--d:.25s" data-i18n="herosub">صورة سينمائية، جولة افتراضية، وحركة تسويقية توصل عقارك لمن يقدّره فعلاً — وأعلى سعر ممكن.</p>
+    <div class="hero-cta rv" style="--d:.35s">
+      <a class="btn-gold magnetic" href="#works" data-cursor="اكتشف" data-i18n="cta1">شوف الأعمال</a>
+      <a class="btn-line magnetic" href="#contact" data-cursor="احجز" data-i18n="cta2">قيّم عقارك</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span data-i18n="scroll">مرّر</span> <span class="ln"></span></div>
+</header>
+
+<section class="manifesto" id="manifesto"><div class="wrap">
+  <p id="manifestoText" data-i18n="manifesto">
+    <span class="kw">نحن</span> <span class="kw" style="--d:.06s">لا</span> <span class="kw" style="--d:.12s">نبيع</span> <span class="kw" style="--d:.18s">جدرانًا،</span> <span class="kw hl" style="--d:.26s">نروي</span> <span class="kw hl" style="--d:.32s">حكاية</span> <span class="kw" style="--d:.4s">المكان</span> <span class="kw" style="--d:.48s">قبل</span> <span class="kw" style="--d:.54s">أن</span> <span class="kw" style="--d:.6s">تطأه</span> <span class="kw" style="--d:.68s">قدمُه.</span> <span class="kw" style="--d:.78s">كل</span> <span class="kw" style="--d:.84s">عقار</span> <span class="kw" style="--d:.9s">عندنا</span> <span class="kw" style="--d:.96s">يُصوَّر</span> <span class="kw" style="--d:1.02s">كإعلان،</span> <span class="kw" style="--d:1.1s">لا</span> <span class="kw" style="--d:1.16s">كأرشيف.</span>
+  </p>
+</div></section>
+
+<section class="proc"><div class="wrap">
+  <div class="sec-no rv" data-i18n="procno">٠٢ — كيف نعمل</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:400;font-size:clamp(28px,4.5vw,52px);max-width:760px;line-height:1.3" data-i18n="proch">أربع خطوات توصّلك للبيع الأسرع والأغلى.</h2>
+  <div class="proc-steps" id="procSteps"></div>
+</div></section>
+
+<section class="services" id="services"><div class="wrap">
+  <div class="sec-no rv" data-i18n="s1no">٠١ — خدماتنا</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:300;font-size:clamp(28px,4.5vw,56px);max-width:760px;line-height:1.3" data-i18n="s1h">ست خطوات، من العدسة حتى التسليم.</h2>
+  <ul class="idx" id="idxList"></ul>
+  <div id="peek"><img alt="" src="" onerror="this.style.display='none'"></div>
+</div></section>
+
+<section class="works" id="works">
+  <div class="works-sticky">
+    <div class="works-head"><div class="sec-no" data-i18n="wno">٠٢ — أعمال حالية</div>
+      <div class="filters" id="filters">
+        <button class="fbtn active" data-filter="all" data-i18n="f_all">الكل</button>
+        <button class="fbtn" data-filter="apartment" data-i18n="f_apt">شقة</button>
+        <button class="fbtn" data-filter="villa" data-i18n="f_villa">فيلا</button>
+        <button class="fbtn" data-filter="commercial" data-i18n="f_comm">تجاري</button>
+        <button class="fbtn" data-filter="chalet" data-i18n="f_chalet">شاليه</button>
+        <button class="fbtn" data-filter="land" data-i18n="f_land">أرض</button>
+      </div>
+    </div>
+    <div class="works-track" id="worksTrack"></div>
+  </div>
+</section>
+
+<section class="show3d" id="show3d"><div class="wrap">
+  <div class="sec-no rv" data-i18n="s3no">٠٣ — تجربة العمق</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:300;font-size:clamp(28px,4.5vw,52px);max-width:720px;line-height:1.3" data-i18n="s3h">قبل التصوير، نبني العقار <span style="color:var(--gold)">رقميًا</span>.</h2>
+  <div class="scene-wrap rv" style="--d:.16s"><canvas id="scene3d"></canvas><div class="hint" data-i18n="hint">اسحب <b>Drag</b> للتدوير · العجلة للتقريب</div></div>
+</div></section>
+
+<section class="stat-band"><div class="stat-marquee" id="statMarquee">
+  <div class="stat-item"><b><span class="cu" data-count="850" data-suffix="+">0</span></b><span data-i18n="stat0">عقار تم تسويقه</span><span class="dot"></span></div>
+  <div class="stat-item"><b><span class="cu" data-count="1200" data-suffix="+">0</span></b><span data-i18n="stat1">عميل وثق بنا</span><span class="dot"></span></div>
+  <div class="stat-item"><b><span class="cu" data-count="96" data-suffix="%">0</span></b><span data-i18n="stat2">بيع خلال 60 يومًا</span><span class="dot"></span></div>
+  <div class="stat-item"><b><span class="cu" data-count="12" data-suffix="+">0</span></b><span data-i18n="stat3">سنة خبرة</span><span class="dot"></span></div>
+  <div class="stat-item"><b><span class="cu" data-count="24">0</span><span class="u">/7</span></b><span data-i18n="stat4">متابعة مستمرة</span><span class="dot"></span></div>
+</div></section>
+
+<section class="marq"><div class="wrap" style="padding:0">
+  <div class="marq-h" data-i18n="marqh">مناطق غطّيناها</div>
+  <div class="marq-track" id="marqTrack"></div>
+</div></section>
+
+<section class="coverage"><div class="wrap">
+  <div class="sec-no rv" data-i18n="covno">تغطيتنا</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:400;font-size:clamp(28px,4.5vw,52px);max-width:720px;line-height:1.3" data-i18n="covh">شبكة عقارية بتغطّي مصر — من القاهرة للساحل.</h2>
+  <div class="map rv" id="mapPanel" style="--d:.16s">
+    <svg id="mapSvg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="map-legend" id="mapLegend"></div>
+  </div>
+</div></section>
+
+<section class="feed"><div class="wrap">
+  <div class="sec-no rv" data-i18n="feedno">٠٥ — معرض بصري</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:400;font-size:clamp(28px,4.5vw,52px);max-width:720px;line-height:1.3" data-i18n="feedh">كل عقار حكاية — وكل حكاية ليها إطار.</h2>
+  <div class="filters" id="feedFilters">
+    <button class="fbtn active" data-filter="all" data-i18n="f_all">الكل</button>
+    <button class="fbtn" data-filter="apartment" data-i18n="f_apt">شقة</button>
+    <button class="fbtn" data-filter="villa" data-i18n="f_villa">فيلا</button>
+    <button class="fbtn" data-filter="commercial" data-i18n="f_comm">تجاري</button>
+    <button class="fbtn" data-filter="chalet" data-i18n="f_chalet">شاليه</button>
+    <button class="fbtn" data-filter="land" data-i18n="f_land">أرض</button>
+  </div>
+  <div class="feed-grid" id="feedGrid">
+    <figure class="tall rv" data-type="villa"><img loading="lazy" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="" onerror="this.style.display='none'"><figcaption>فيلا — أكتوبر</figcaption></figure>
+    <figure class="rv" data-type="apartment"><img loading="lazy" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="" onerror="this.style.display='none'"><figcaption>غرفة نوم</figcaption></figure>
+    <figure class="wide rv" data-type="commercial"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"><source src="https://assets.mixkit.co/videos/27543/27543-720.mp4" type="video/mp4"></video><figcaption>جولة ووكثرو</figcaption></figure>
+    <figure class="rv" data-type="apartment"><img loading="lazy" src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=800&q=80" alt="" onerror="this.style.display='none'"><figcaption>مطبخ حديث</figcaption></figure>
+    <figure class="tall rv" data-type="villa"><img loading="lazy" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="" onerror="this.style.display='none'"><figcaption>صالة معيشة</figcaption></figure>
+    <figure class="rv" data-type="commercial"><img loading="lazy" src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80" alt="" onerror="this.style.display='none'"><figcaption>واجهة تجارية</figcaption></figure>
+    <figure class="wide rv" data-type="land"><img loading="lazy" src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=800&q=80" alt="" onerror="this.style.display='none'"><figcaption>حديقة خارجية</figcaption></figure>
+    <figure class="rv" data-type="chalet"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80"><source src="https://assets.mixkit.co/videos/24945/24945-720.mp4" type="video/mp4"></video><figcaption>تفاصيل الإضاءة</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="ghost"><div class="ghost-track"><span>بيع <em>—</em> تأجير <em>—</em> تقييم <em>—</em> تصوير <em>—</em> جولات <em>—</em> حملات <em>—</em> </span></div></section>
+
+<section class="vband"><div class="vo"></div>
+  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80"><source src="https://assets.mixkit.co/videos/24945/24945-720.mp4" type="video/mp4"></video>
+  <div class="vc rv"><div class="q" data-i18n="vq">« العقار الصح يبيع نفسه — <em>إحنا بس بنخليه يُرى صح.</em> »</div></div>
+</section>
+
+<section class="ba"><div class="wrap">
+  <div class="sec-no rv" data-i18n="bano">٠٦ — قبل و بعد</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:400;font-size:clamp(28px,4.5vw,52px);max-width:720px;line-height:1.3" data-i18n="ba_h">نفس العقار — قبل التصوير وبعده. اسحب تشوف الفرق.</h2>
+  <div class="ba-slider rv" id="baSlider" style="--d:.16s">
+    <img class="ba-after" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="" onerror="this.style.display='none'">
+    <img class="ba-before" id="baBefore" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=80" alt="" onerror="this.style.display='none'">
+    <div class="ba-tag b" data-i18n="ba_before">قبل</div>
+    <div class="ba-tag a" data-i18n="ba_after">بعد</div>
+    <div class="ba-handle" id="baHandle"></div>
+  </div>
+</div></section>
+
+<section class="tesi"><div class="wrap">
+  <div class="sec-no rv" data-i18n="tesno">٠٧ — آراء العملاء</div>
+  <div class="qwrap" id="qWrap"></div>
+  <div style="position:relative">
+    <button class="qprev magnetic" id="qPrev" data-cursor="">‹</button>
+    <button class="qnext magnetic" id="qNext" data-cursor="">›</button>
+  </div>
+  <div class="qdots" id="qDots"></div>
+</div></section>
+
+<section class="reel"><div class="wrap">
+  <div class="sec-no rv" data-i18n="rlno">فيلم تعريفي</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:400;font-size:clamp(28px,4.5vw,52px);max-width:720px;line-height:1.3" data-i18n="rlh">شوف إزاي بنحوّل العقار لأنّه مطلوب.</h2>
+  <div class="reel-box rv" id="reelBox" style="--d:.16s">
+    <video id="reelVideo" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80">
+      <source src="https://assets.mixkit.co/videos/24945/24945-720.mp4" type="video/mp4">
+    </video>
+    <button class="reel-play" id="reelPlay" aria-label="تشغيل الصوت">▶</button>
+    <div class="reel-cap" data-i18n="rlcap">فيلم تعريفي — ٩٠ ثانية</div>
+  </div>
+</div></section>
+
+<section class="ghost"><div class="ghost-track"><span>شقة <em>·</em> فيلا <em>·</em> أرض <em>·</em> تجاري <em>·</em> إداري <em>·</em> صيفي <em>·</em> </span></div></section>
+
+<section class="pricing" id="pricing"><div class="wrap">
+  <div class="sec-no rv" data-i18n="pno">٠٨ — باقات التسويق</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:300;font-size:clamp(28px,4.5vw,52px);max-width:680px;line-height:1.3" data-i18n="ph">تسويق بخطّة، مش بالصدفة.</h2>
+  <div class="price-grid rv" id="priceGrid" style="--d:.16s"></div>
+</div></section>
+
+<section class="faq"><div class="wrap">
+  <div class="sec-no rv" data-i18n="faqno">٠٩ — أسئلة شائعة</div>
+  <h2 class="rv" style="--d:.08s;font-family:var(--font-per);font-weight:400;font-size:clamp(28px,4.5vw,52px);max-width:680px;line-height:1.3" data-i18n="faqh">كل اللي محتاج تعرفه قبل ما تبدأ.</h2>
+  <div class="faq-list" id="faqList"></div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <div class="sec-no rv" data-i18n="cno">١٠ — تواصل</div>
+  <div class="contact-grid">
+    <div class="info rv">
+      <h2 data-i18n="ctitle">حابب تبيع عقارك<br><em>بسعره الحقيقي؟</em></h2>
+      <ul class="clist">
+        <li><span class="ci">📞</span><div data-i18n="cl0">اتصل: <b class="num en">0100 000 0000</b></div></li>
+        <li><span class="ci">💬</span><div data-i18n="cl1">واتساب: <b class="num en">0100 000 0000</b></div></li>
+        <li><span class="ci">✉️</span><div>info@salem-realestate.com</div></li>
+        <li><span class="ci">📍</span><div data-i18n="cl3">القاهرة — زيارة أو معاينة منزلية</div></li>
+      </ul>
+    </div>
+    <form class="form rv" id="contactForm" style="--d:.12s">
+      <input type="text" data-i18n="f_name" placeholder="الاسم الكامل" required>
+      <input type="tel" class="num" data-i18n="f_tel" placeholder="رقم الهاتف" required>
+      <select required data-i18n="f_type"><option value="">نوع العقار</option><option>شقة</option><option>فيلا / تاون هاوس</option><option>أرض</option><option>تجاري / إداري</option><option>أخرى</option></select>
+      <input type="text" data-i18n="f_area" placeholder="المنطقة / المدينة">
+      <textarea data-i18n="f_det" placeholder="تفاصيل العقار (مساحة، عدد غرف، للبيع أم للإيجار...)"></textarea>
+      <button class="btn-gold magnetic" type="submit" data-i18n="f_sub">احجز التقييم المجاني</button>
+      <p class="note" data-i18n="f_note">التقييم مجاني تمامًا — بدون أي التزام.</p>
+    </form>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-monogram">سليم</div>
+  <div class="foot-grid">
+    <div>  <div class="brand foot" style="margin-bottom:6px"><img class="brand-logo" src="logo-salem.png" alt="سليم — دار للعقار"></div><p data-i18n="foot_p">دار سليم للعقار — نروي حكاية المكان قبل ما تطأه قدمُه، ونوصّلك لأعلى سعر وأسرع بيع.</p></div>
+    <div><h4 data-i18n="fh0">روابط</h4><a href="#manifesto" data-i18n="fl0">رؤيتنا</a><a href="#services" data-i18n="fl1">خدماتنا</a><a href="#works" data-i18n="fl2">أعمال</a><a href="#pricing" data-i18n="fl3">باقات</a></div>
+    <div><h4 data-i18n="fh1">الخدمات</h4><a href="#services" data-i18n="fl4">تصوير عقاري</a><a href="#services" data-i18n="fl5">جولات افتراضية</a><a href="#services" data-i18n="fl6">حملات موجهة</a><a href="#services" data-i18n="fl7">تقييم سعري</a></div>
+    <div><h4 data-i18n="fh2">تواصل</h4><a class="wa-link" href="https://wa.me/201000000000" data-i18n="fl8">واتساب</a><a href="#contact" data-i18n="fl9">نموذج تواصل</a><a href="mailto:info@salem-realestate.com" data-i18n="fl10">البريد</a><a href="#contact" data-i18n="fl11">مكتبنا</a></div>
+  </div>
+  <div class="foot-bottom"><span data-i18n="foot_bottom">© <span class="num en">2026</span> دار سليم للعقار — جميع الحقوق محفوظة</span><span>DESIGNED IN CAIRO · NOT YOUR TYPICAL LISTING</span></div>
+</div></footer>
+
+<div class="modal" id="propertyModal" aria-hidden="true">
+  <div class="modal-back" data-close></div>
+  <div class="modal-card">
+    <button class="modal-x" data-close data-cursor="أغلق" aria-label="إغلاق">✕</button>
+    <div class="modal-img"><img id="mImg" src="" alt="">
+      <div class="pano" id="mPano"><img id="mPanoImg" src="" alt=""><div class="pano-hint" id="mPanoHint" data-i18n="panohint">اسحب للاستكشاف ←→</div></div>
+    </div>
+    <div class="modal-info">
+      <div class="m-city" id="mCity"></div>
+      <h3 id="mTitle"></h3>
+      <div class="m-price" id="mPrice"></div>
+      <ul class="m-specs" id="mSpecs"></ul>
+      <p class="m-story" id="mStory"></p>
+      <button class="mtour" id="mTour" data-cursor="">جولة افتراضية 360°</button>
+      <a class="btn-gold magnetic" id="mCta" href="#contact" data-cursor="احجز" data-i18n="mcta" style="margin-top:18px">احجز معاينة لهذا العقار</a>
+    </div>
+  </div>
+</div>
+
+<a class="wa magnetic wa-link" href="https://wa.me/201000000000" aria-label="WhatsApp" style="position:fixed;bottom:26px;left:26px;z-index:80;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 30px rgba(37,211,102,.4);transition:transform .4s var(--spring)" data-cursor="واتس">💬</a>
+<button class="to-top" id="toTop" aria-label="للأعلى">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var touch = window.matchMedia("(hover: none)").matches;
+
+  /* smooth scroll + progress */
+  var lenis=null, progress=document.getElementById('progress');
+  if(window.Lenis && !reduce){
+    lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));},smoothWheel:true});
+    (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();
+  }
+  function updateProgress(){var h=document.documentElement.scrollHeight-window.innerHeight;var p=h>0?window.scrollY/h:0;if(progress)progress.style.transform='scaleX('+p+')';}
+  window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length<2)return;var el=document.querySelector(id);if(!el)return;e.preventDefault();if(lenis)lenis.scrollTo(el,{offset:-70});else el.scrollIntoView({behavior:'smooth'});});});
+
+  /* reveal + kinetic words */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  document.querySelectorAll('img').forEach(function(i){i.setAttribute('loading','lazy');});
+  var kwio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.kw').forEach(function(w){w.classList.add('in');});kwio.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('#manifestoText').forEach(function(el){kwio.observe(el);});
+
+  /* custom cursor */
+  if(!touch && !reduce){
+    var dot=document.getElementById('cDot'),ring=document.getElementById('cRing'),lbl=document.getElementById('cLbl');
+    var mx=innerWidth/2,my=innerHeight/2,dx=mx,dy=my,rx=mx,ry=my;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+    (function loop(){dx+=(mx-dx)*.35;dy+=(my-dy)*.35;rx+=(mx-rx)*.15;ry+=(my-ry)*.15;dot.style.transform='translate('+dx+'px,'+dy+'px)';ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop);})();
+    document.addEventListener('mouseover',function(e){var t=e.target.closest('[data-cursor],a,button,summary,.idx-row,.work,.price-card');if(t){ring.classList.add('hot');lbl.textContent=t.getAttribute('data-cursor')||'';}else{ring.classList.remove('hot');}});
+  }
+
+  /* magnetic */
+  if(!touch && !reduce){
+    document.querySelectorAll('.magnetic').forEach(function(el){var s=.35;el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-(r.left+r.width/2))*s)+'px,'+((e.clientY-(r.top+r.height/2))*s)+'px)';});el.addEventListener('mouseleave',function(){el.style.transform='translate(0,0)';});});
+  }
+
+  /* service peek image */
+  var peek=document.getElementById('peek'),peekImg=peek?peek.querySelector('img'):null;
+  if(peek && !touch){
+    document.querySelectorAll('.idx-row').forEach(function(row){
+      row.addEventListener('mouseenter',function(){if(peekImg){peekImg.style.display='';peekImg.src=row.getAttribute('data-img');}peek.style.opacity='1';peek.style.transform='scale(1) rotate(-3deg)';});
+      row.addEventListener('mousemove',function(e){var tw=peek.offsetWidth,th=peek.offsetHeight;var x=Math.min(e.clientX+24,window.innerWidth-tw-10),y=Math.min(Math.max(e.clientY-th/2,10),window.innerHeight-th-10);peek.style.left=x+'px';peek.style.top=y+'px';});
+      row.addEventListener('mouseleave',function(){peek.style.opacity='0';peek.style.transform='scale(.9) rotate(-3deg)';});
+    });
+  }
+
+  /* stat marquee seamless loop */
+  var sm=document.getElementById('statMarquee');
+  if(sm) sm.innerHTML+=sm.innerHTML;
+
+  /* contextual cursor labels */
+  if(!touch){
+    document.querySelectorAll('.work').forEach(function(w){w.setAttribute('data-cursor','استكشف');});
+    document.querySelectorAll('.nav-links a').forEach(function(a){a.setAttribute('data-cursor','اقرأ');});
+  }
+
+  /* hero parallax */
+  var hi=document.querySelector('.hero-inner');
+  if(hi && !reduce){
+    addEventListener('scroll',function(){var y=window.scrollY;if(y<window.innerHeight){hi.style.transform='translateY('+(y*0.18)+'px)';hi.style.opacity=String(Math.max(0,1-y/(window.innerHeight*0.75)));}},{passive:true});
+  }
+
+  /* horizontal works scroll (lerped glide) */
+  var works=document.getElementById('works'),track=document.getElementById('worksTrack');
+  if(works && track){
+    var tX=0,cX=0;
+    function calc(){var r=works.getBoundingClientRect();var total=works.offsetHeight-window.innerHeight;var p=total>0?Math.min(Math.max(-r.top,0),total)/total:0;var max=track.scrollWidth-window.innerWidth+80;tX=-p*max;}
+    ['scroll','resize'].forEach(function(ev){addEventListener(ev,calc,{passive:true});});
+    (function glide(){cX+=(tX-cX)*0.085;track.style.transform='translateX('+cX+'px)';requestAnimationFrame(glide);})();
+    calc();
+  }
+
+  /* goldfield particles */
+  var cv=document.getElementById('goldfield');
+  if(cv && !reduce){
+    var ctx=cv.getContext('2d'),W,H,dpr=Math.min(devicePixelRatio||1,1.5),parts=[],COL=['rgba(231,214,174,','rgba(201,182,140,','rgba(245,221,156,'];
+    function rs(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+    function mk(){parts=[];var n=Math.min(120,Math.floor(W*H/9000));for(var i=0;i<n;i++)parts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.6,s:Math.random()*.4+.15,a:Math.random()*.5+.2,c:COL[i%3]});}
+    rs();mk();var ox=0,oy=0,tmx=0,tmy=0;
+    addEventListener('mousemove',function(e){tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
+    addEventListener('resize',function(){rs();mk();});
+    (function tk(){ox+=(tmx*22-ox)*.05;oy+=(tmy*16-oy)*.05;ctx.clearRect(0,0,W,H);ctx.globalCompositeOperation='lighter';for(var i=0;i<parts.length;i++){var p=parts[i];p.y-=p.s;if(p.y<-5){p.y=H+5;p.x=Math.random()*W;}var gx=p.x+ox,gy=p.y+oy;if(gx<-8||gx>W+8)continue;var g=ctx.createRadialGradient(gx,gy,0,gx,gy,p.r*4);g.addColorStop(0,p.c+p.a+')');g.addColorStop(1,p.c+'0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(gx,gy,p.r*4,0,6.283);ctx.fill();}ctx.globalCompositeOperation='source-over';requestAnimationFrame(tk);})();
+  }
+
+  /* 3D showcase */
+  (function(){
+    if(!window.THREE||reduce)return;var cv=document.getElementById('scene3d');if(!cv)return;
+    var r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));
+    var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,100);cam.position.set(0,1.5,9);
+    function spr(){var c=document.createElement('canvas');c.width=c.height=64;var x=c.getContext('2d');var g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(245,221,156,1)');g.addColorStop(.4,'rgba(201,182,140,.8)');g.addColorStop(1,'rgba(201,182,140,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);}
+    var bld=new THREE.Group(),wmat=new THREE.MeshBasicMaterial({color:0xC9B68C,wireframe:true,transparent:true,opacity:.55});
+    for(var f=0;f<7;f++){var w=2.5-f*.16+(f%2?0.35:0),h=.72,d=2.5-f*.16;var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),wmat);m.position.y=-2.1+f*h+h/2;bld.add(m);}
+    var base=new THREE.Mesh(new THREE.BoxGeometry(4.4,.32,4.4),new THREE.MeshBasicMaterial({color:0xb8a275,wireframe:true,transparent:true,opacity:.4}));base.position.y=-2.35;bld.add(base);
+    var core=new THREE.Mesh(new THREE.IcosahedronGeometry(.9,0),new THREE.MeshBasicMaterial({color:0xE7D6AE,wireframe:true,transparent:true,opacity:.22}));core.position.y=.2;bld.add(core);    bld.rotation.x=-.15;sc.add(bld);
+    var grid=new THREE.GridHelper(16,16,0xC9B68C,0x2e2a22);grid.position.y=-2.5;grid.material.transparent=true;grid.material.opacity=0.16;sc.add(grid);
+    var N=700,pos=new Float32Array(N*3);for(var i=0;i<N;i++){var rr=5+Math.random()*6,t=Math.random()*6.283,p=Math.acos(2*Math.random()-1);pos[i*3]=rr*Math.sin(p)*Math.cos(t);pos[i*3+1]=(Math.random()-.5)*12;pos[i*3+2]=rr*Math.sin(p)*Math.sin(t);}
+    var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    var pts=new THREE.Points(pg,new THREE.PointsMaterial({size:.07,color:0xE7D6AE,map:spr(),transparent:true,opacity:.6,blending:THREE.AdditiveBlending,depthWrite:false}));sc.add(pts);
+    var tRX=0,tRY=0,rX=0,rY=0,zoom=9,drag=false,lx=0,ly=0;
+    function dn(x,y){drag=true;lx=x;ly=y;}function mv(x,y){if(!drag)return;tRY+=(x-lx)*.006;tRX+=(y-ly)*.006;tRX=Math.max(-.9,Math.min(.9,tRX));lx=x;ly=y;}function up(){drag=false;}
+    cv.addEventListener('mousedown',function(e){dn(e.clientX,e.clientY);});addEventListener('mouseup',up);addEventListener('mousemove',function(e){mv(e.clientX,e.clientY);});
+    cv.addEventListener('wheel',function(e){e.preventDefault();zoom=Math.max(5.5,Math.min(15,zoom+e.deltaY*.01));},{passive:false});
+    cv.addEventListener('touchstart',function(e){dn(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});cv.addEventListener('touchmove',function(e){mv(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});cv.addEventListener('touchend',up);
+    function rs(){var w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}rs();addEventListener('resize',rs);
+    var raf3;function tk(){if(!drag)tRY+=.0028;rY+=(tRY-rY)*.07;rX+=(tRX-rX)*.07;bld.rotation.y=rY;bld.rotation.x=-.15+rX;core.rotation.x+=.01;core.rotation.y+=.012;cam.position.z+=(zoom-cam.position.z)*.08;cam.position.x=Math.sin(performance.now()*0.00018)*1.4;cam.lookAt(0,0.2,0);pts.rotation.y+=.0009;r.render(sc,cam);raf3=requestAnimationFrame(tk);}
+    var sio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!raf3)tk();}else{cancelAnimationFrame(raf3);raf3=null;}});},{threshold:.05});sio.observe(cv);tk();
+  })();
+
+  /* nav shrink */
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.style.padding=window.scrollY>40?'12px 0':'22px 0';},{passive:true});
+
+  /* loader with percentage */
+  var lp=0,lpEl=document.getElementById('lpct'),loaderEl=document.getElementById('loader'),lFinished=false;
+  function finishLoad(){if(lFinished)return;lFinished=true;if(loaderEl)loaderEl.classList.add('done');}
+  if(lpEl){
+    var lInt=setInterval(function(){lp+=Math.random()*8+5;if(lp>=100){lp=100;clearInterval(lInt);setTimeout(finishLoad,350);}lpEl.textContent=Math.round(lp);},85);
+  } else { setTimeout(finishLoad,400); }
+  setTimeout(finishLoad,6000);
+
+  /* ghost dividers seamless */
+  document.querySelectorAll('.ghost-track').forEach(function(g){g.innerHTML+=g.innerHTML;});
+
+  /* parallax (uses Lenis scroll position) */
+  var pyEls=document.querySelectorAll('[data-py]');
+  function parallax(){var vh=innerHeight;pyEls.forEach(function(el){var r=el.getBoundingClientRect();var c=r.top+r.height/2;var off=(c-vh/2)/vh;var f=parseFloat(el.getAttribute('data-py'))||0.06;el.style.transform='translate3d(0,'+(off*f*100).toFixed(2)+'px,0)';});}
+  if(lenis)lenis.on('scroll',parallax);addEventListener('scroll',parallax,{passive:true});var rafP;requestAnimationFrame(function lp(){parallax();rafP=requestAnimationFrame(lp);});
+
+  /* works reveal + clip */
+  document.querySelectorAll('.work').forEach(function(w,i){w.classList.add('rv');w.style.setProperty('--d',(i*0.08)+'s');});
+  document.querySelectorAll('.work img').forEach(function(im){im.classList.add('clip');io.observe(im);});
+
+  /* ===== i18n + dynamic content ===== */
+  var I18N={
+    ar:{
+      nav_vision:'رؤيتنا',nav_services:'خدماتنا',nav_works:'أعمال',nav_pricing:'باقات',nav_contact:'تواصل',nav_start:'ابدأ',
+      kicker:'مكتب سليم لتسويق العقاري',
+      masthead:'نبيع <span class="out">العقار</span><br><span class="ac">كأثر</span> لا كسلعة',
+      herosub:'صورة سينمائية، جولة افتراضية، وحركة تسويقية توصل عقارك لمن يقدّره فعلاً — وأعلى سعر ممكن.',
+      cta1:'شوف الأعمال',cta2:'قيّم عقارك',scroll:'مرّر',
+      s1no:'٠١ — خدماتنا',s1h:'ست خطوات، من العدسة حتى التسليم.',
+      srv:['تصوير عقاري سينمائي','فوتوغرافيا وريلز بجودة استوديو','جولات افتراضية 360°','تفقّد العقار كأنك بداخله','حملات إعلانية موجهة','على فيسبوك وإنستغرام وجوجل','تقييم سعري دقيق','دراسات سوق تسرّع البيع بأفضل عائد','إدارة المفاوضات','من المشاهدة حتى عقد التسليم','حضور رقمي كامل','صفحة عرض لكل عقار + منصاتنا'],
+      srvImg:['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=700&q=80'],
+      wno:'٠٢ — أعمال حالية',f_all:'الكل',f_apt:'شقة',f_villa:'فيلا',f_comm:'تجاري',f_chalet:'شاليه',f_land:'أرض',
+      s3no:'٠٣ — تجربة العمق',s3h:'قبل التصوير، نبني العقار <span style="color:var(--gold)">رقميًا</span>.',hint:'اسحب <b>Drag</b> للتدوير · العجلة للتقريب',
+      stat0:'عقار تم تسويقه',stat1:'عميل وثق بنا',stat2:'بيع خلال 60 يومًا',stat3:'سنة خبرة',stat4:'متابعة مستمرة',
+      vq:'« العقار الصح يبيع نفسه — <em>إحنا بس بنخليه يُرى صح.</em> »',
+      qno:'٠٤ — قالوا عنا',qquote:'بعت شقتي في ٢٥ يوم بسعر أعلى مما عرضه عليّ وسطاء تانيين. التصوير والجولة الافتراضية فرقوا جدًا — وحسّيت إني بيتعامل معايا مش مع عقار.',qname:'م. أحمد',qrole:'باع شقة — التجمع الخامس',
+      pno:'٠٨ — باقات التسويق',ph:'تسويق بخطّة، مش بالصدفة.',
+      pk:[{tag:'أساسي',name:'التأسيس',amt:'3,500 <small>ج.م</small>',items:['تصوير فوتوغرافي احترافي','إعلان ممول واحد (١٠ أيام)','نشر على منصاتنا','تقرير أداء أسبوعي'],btn:'اطلب الباقة'},{tag:'الأكثر طلبًا',name:'الاحترافي',amt:'6,500 <small>ج.م</small>',items:['تصوير + فيديو دعائي','جولة افتراضية 360°','حملتان ممولتان (شهر)','صفحة عرض للعقار','إدارة المشاهدات'],btn:'اطلب الباقة'},{tag:'متكامل',name:'الشامل',amt:'حسب العقار',items:['كل خدمات الاحترافي','درون وتصوير جوي','حملات حتى البيع','مدير حساب مخصص','عقود وتسليم قانوني'],btn:'تواصل معنا'}],
+      cno:'١٠ — تواصل',ctitle:'حابب تبيع عقارك<br><em>بسعره الحقيقي؟</em>',
+      cl0:'اتصل: <b class="num en">0100 000 0000</b>',cl1:'واتساب: <b class="num en">0100 000 0000</b>',cl3:'القاهرة — زيارة أو معاينة منزلية',
+      f_name:'الاسم الكامل',f_tel:'رقم الهاتف',f_type:'نوع العقار',f_opt:['شقة','فيلا / تاون هاوس','أرض','تجاري / إداري','أخرى'],f_area:'المنطقة / المدينة',f_det:'تفاصيل العقار (مساحة، عدد غرف، للبيع أم للإيجار...)',f_sub:'احجز التقييم المجاني',f_note:'التقييم مجاني تمامًا — بدون أي التزام.',
+      f_done:'شكرًا لتواصلك مع <b>سليم</b>',f_donep:'هنتصل بيك خلال ساعتين لتقييم عقارك مجانًا.',
+      foot_p:'دار سليم للعقار — نروي حكاية المكان قبل ما تطأه قدمُه، ونوصّلك لأعلى سعر وأسرع بيع.',
+      fh0:'روابط',fh1:'الخدمات',fh2:'تواصل',fl0:'رؤيتنا',fl1:'خدماتنا',fl2:'أعمال',fl3:'باقات',fl4:'تصوير عقاري',fl5:'جولات افتراضية',fl6:'حملات موجهة',fl7:'تقييم سعري',fl8:'واتساب',fl9:'نموذج تواصل',fl10:'البريد',fl11:'مكتبنا',
+      foot_bottom:'© <span class="num en">2026</span> دار سليم للعقار — جميع الحقوق محفوظة',
+      mcta:'احجز معاينة لهذا العقار',mtour:'جولة افتراضية 360°',panohint:'اسحب للاستكشاف ←→',view:'عرض',wa_def:'مرحبًا سليم، حابب أستفسر عن خدماتكم العقارية.',
+      ch:['رؤيتنا','خدمات','أعمال','العمق','باقات','تواصل'],
+      manifesto:'<span class="kw">نحن</span> <span class="kw" style="--d:.06s">لا</span> <span class="kw" style="--d:.12s">نبيع</span> <span class="kw" style="--d:.18s">جدرانًا،</span> <span class="kw hl" style="--d:.26s">نروي</span> <span class="kw hl" style="--d:.32s">حكاية</span> <span class="kw" style="--d:.4s">المكان</span> <span class="kw" style="--d:.48s">قبل</span> <span class="kw" style="--d:.54s">أن</span> <span class="kw" style="--d:.6s">تطأه</span> <span class="kw" style="--d:.68s">قدمُه.</span> <span class="kw" style="--d:.78s">كل</span> <span class="kw" style="--d:.84s">عقار</span> <span class="kw" style="--d:.9s">عندنا</span> <span class="kw" style="--d:.96s">يُصوَّر</span> <span class="kw" style="--d:1.02s">كإعلان،</span> <span class="kw" style="--d:1.1s">لا</span> <span class="kw" style="--d:1.16s">كأرشيف.</span>',
+      feedno:'٠٥ — معرض بصري',feedh:'كل عقار حكاية — وكل حكاية ليها إطار.',bano:'٠٦ — قبل و بعد',ba_h:'نفس العقار — قبل التصوير وبعده. اسحب تشوف الفرق.',ba_before:'قبل',ba_after:'بعد',tesno:'٠٧ — آراء العملاء',
+      testi:[
+        {q:'بعت شقتي في ٢٥ يوم بسعر أعلى مما عرضه عليّ وسطاء تانيين. التصوير والجولة الافتراضية فرقوا جدًا — وحسّيت إني بيتعامل معايا مش مع عقار.',n:'م. أحمد',r:'باع شقة — التجمع الخامس',av:'م'},
+        {q:'كان عندي محل واقف شهور، سليم صوّروه ليل وعلّقوه بشكل جذب مستأجر في أسبوع بأعلى إيجار في العمارة.',n:'أ. سارة',r:'أجرت محل — وسط البلد',av:'س'},
+        {q:'اشترينا فيلا عبر الجولة الافتراضية من غير ما نزورها. الإضاءة والزوايا خلّونا نثق فيها من أول نظرة.',n:'د. خالد',r:'اشترى فيلا — الشيخ زايد',av:'خ'}
+      ],
+      procno:'٠٤ — كيف نعمل',proch:'أربع خطوات توصّلك للبيع الأسرع والأغلى.',
+      steps:[{t:'تقييم مجاني',d:'نزور العقار أو نراجع ملفه ونحدد أفضل سعر وتوقيت للبيع أو التأجير بلا أي التزام.'},{t:'تصوير سينمائي',d:'تصوير فوتوغرافي وفيديو وجولة 360° بزوايا وإضاءة تروّج القيمة الحقيقية.'},{t:'حملة ممولة',d:'إعلانات مستهدفة على فيسبوك وإنستجرام وجوجل أمام جمهور يبحث فعلًا.'},{t:'إغلاق الصفقة',d:'ندير المشاهدات والمفاوضات والعقود حتى التسليم النهائي.'}],
+      faqno:'٠٩ — أسئلة شائعة',faqh:'كل اللي محتاج تعرفه قبل ما تبدأ.',
+      faqs:[{q:'هل التقييم مجاني؟',a:'نعم، زيارة التقييم وتحديد السعر بدون أي تكلفة أو التزام مسبق.'},{q:'كم تستغرق عملية البيع؟',a:'متوسطنا ٢٥ يومًا، لكنها تختلف حسب العقار والمنطقة والسعر المطلوب.'},{q:'هل بتصوّروا الشقة من جوه؟',a:'نعم، نصوّر كل التفاصيل: المطبخ والمعيشة والحمامات والإضاءة الطبيعية.'},{q:'بتتعاملوا مع عقارات بره القاهرة؟',a:'نعم، بنغطي القاهرة الكبرى والساحل والمدن الجديدة.'}],
+      marqh:'مناطق غطّيناها',
+      marq:['مدينة نصر','الشيخ زايد','التجمع الخامس','الساحل الشمالي','أكتوبر','المعادي','القطامية','الرحاب','مدينتي','العبور'],
+      covno:'تغطيتنا',covh:'شبكة عقارية بتغطّي مصر — من القاهرة للساحل.',rlno:'فيلم تعريفي',rlh:'شوف إزاي بنحوّل العقار لأنّه مطلوب.',rlcap:'فيلم تعريفي — ٩٠ ثانية'
+    },
+    en:{
+      nav_vision:'Our Vision',nav_services:'Services',nav_works:'Work',nav_pricing:'Packages',nav_contact:'Contact',nav_start:'Start',
+      kicker:'Salem Real Estate Marketing',
+      masthead:'We sell <span class="out">property</span><br><span class="ac">as art</span>, not as goods',
+      herosub:'Cinematic imagery, virtual tours, and a marketing motion that reaches those who truly value your home — at the highest price.',
+      cta1:'See the work',cta2:'Value your property',scroll:'Scroll',
+      s1no:'01 — Our Services',s1h:'Six steps, from lens to handover.',
+      srv:['Cinematic real estate photography','Studio-grade photos & reels','360° virtual tours','Explore the property as if inside','Targeted ad campaigns','On Facebook, Instagram & Google','Accurate price valuation','Market studies that speed up the sale','Negotiation management','From viewing to signing','Full digital presence','A showcase page per property + our platforms'],
+      srvImg:['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=700&q=80','https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=700&q=80'],
+      wno:'02 — Current Work',f_all:'All',f_apt:'Apartment',f_villa:'Villa',f_comm:'Commercial',f_chalet:'Chalet',f_land:'Land',
+      s3no:'03 — Depth Experience',s3h:'Before shooting, we build the property <span style="color:var(--gold)">digitally</span>.',hint:'Drag <b>Drag</b> to rotate · Wheel to zoom',
+      stat0:'properties marketed',stat1:'clients trusted us',stat2:'sold within 60 days',stat3:'years of experience',stat4:'continuous follow-up',
+      vq:'« The right property sells itself — <em>we just make it seen right.</em> »',
+      qno:'04 — What they said',qquote:'I sold my apartment in 25 days at a higher price than other brokers offered. The photography and virtual tour made all the difference — and I felt treated as a person, not a listing.',qname:'Eng. Ahmed',qrole:'Sold an apartment — New Cairo',
+      pno:'08 — Marketing Packages',ph:'Marketing by plan, not by chance.',
+      pk:[{tag:'Starter',name:'Foundation',amt:'3,500 <small>EGP</small>',items:['Professional photography','One sponsored ad (10 days)','Posting on our platforms','Weekly performance report'],btn:'Request package'},{tag:'Most popular',name:'Professional',amt:'6,500 <small>EGP</small>',items:['Photo + promo video','360° virtual tour','Two sponsored campaigns (month)','Property showcase page','Viewing management'],btn:'Request package'},{tag:'Complete',name:'Full',amt:'Per property',items:['All Professional services','Drone & aerial shoot','Campaigns until sold','Dedicated account manager','Legal contracts & handover'],btn:'Contact us'}],
+      cno:'10 — Contact',ctitle:'Want to sell your property<br><em>at its true price?</em>',
+      cl0:'Call: <b class="num en">0100 000 0000</b>',cl1:'WhatsApp: <b class="num en">0100 000 0000</b>',cl3:'Cairo — visit or home inspection',
+      f_name:'Full name',f_tel:'Phone number',f_type:'Property type',f_opt:['Apartment','Villa / Townhouse','Land','Commercial / Office','Other'],f_area:'Area / City',f_det:'Property details (area, rooms, for sale or rent...)',f_sub:'Book free valuation',f_note:'The valuation is completely free — no commitment.',
+      f_done:'Thank you for contacting <b>Salem</b>',f_donep:'We will call you within two hours to value your property for free.',
+      foot_p:'Salem Real Estate — we tell the story of a place before a foot steps in, and get you the highest price and fastest sale.',
+      fh0:'Links',fh1:'Services',fh2:'Contact',fl0:'Our Vision',fl1:'Services',fl2:'Work',fl3:'Packages',fl4:'Real estate photo',fl5:'Virtual tours',fl6:'Targeted campaigns',fl7:'Price valuation',fl8:'WhatsApp',fl9:'Contact form',fl10:'Email',fl11:'Our office',
+      foot_bottom:'© <span class="num en">2026</span> Salem Real Estate — All rights reserved',
+      mcta:'Book a viewing for this property',mtour:'360° virtual tour',panohint:'Drag to explore ←→',view:'View',wa_def:'Hello Salem, I would like to ask about your real estate services.',
+      ch:['Vision','Services','Work','Depth','Packages','Contact'],
+      manifesto:'We do not sell walls — we tell the story of a place before a foot steps in. Every property we market is shot like a film, never archived like a file.',
+      feedno:'05 — Visual Gallery',feedh:'Every property is a story — and every story deserves a frame.',bano:'06 — Before & After',ba_h:'The same property — before and after our shoot. Drag to see the difference.',ba_before:'Before',ba_after:'After',tesno:'07 — Client Voices',
+      testi:[
+        {q:'I sold my apartment in 25 days at a higher price than other brokers offered. The photography and virtual tour made all the difference.',n:'Eng. Ahmed',r:'Sold an apartment — New Cairo',av:'A'},
+        {q:'My shop stood empty for months. Salem shot it at night and presented it so well it attracted a tenant in a week at the highest rent in the building.',n:'S. Sara',r:'Rented a shop — Downtown',av:'S'},
+        {q:'We bought a villa through the virtual tour without visiting. The light and angles made us trust it at first sight.',n:'Dr. Khaled',r:'Bought a villa — Sheikh Zayed',av:'K'}
+      ],
+      procno:'04 — How We Work',proch:'Four steps to your fastest, highest sale.',
+      steps:[{t:'Free valuation',d:'We visit the property or review its file and set the best price and timing for sale or rent, with no commitment.'},{t:'Cinematic shoot',d:'Professional photo, video and a 360° tour with angles and light that sell the real value.'},{t:'Paid campaign',d:'Targeted ads on Facebook, Instagram and Google in front of people who are actually looking.'},{t:'Close the deal',d:'We manage viewings, negotiations and contracts all the way to final handover.'}],
+      faqno:'09 — FAQ',faqh:'Everything you need before you start.',
+      faqs:[{q:'Is the valuation free?',a:'Yes, the valuation visit and price setting come with no cost or prior commitment.'},{q:'How long does a sale take?',a:'Our average is 25 days, but it varies by property, area and asking price.'},{q:'Do you shoot the apartment inside?',a:'Yes, we capture every detail: kitchen, living room, bathrooms and natural light.'},{q:'Do you handle properties outside Cairo?',a:'Yes, we cover Greater Cairo, the North Coast and the new cities.'}],
+      marqh:'Areas we covered',
+      marq:['Nasr City','Sheikh Zayed','New Cairo','North Coast','October','Maadi','Katameya','Rehab','Madinety','Obour'],
+      covno:'Our Coverage',covh:'A real-estate network covering Egypt — from Cairo to the North Coast.',rlno:'Brand Film',rlh:'See how we turn a property into a wanted one.',rlcap:'Brand film — 90 seconds'
+    }
+  };
+  var lang=(function(){try{return localStorage.getItem('salem_lang')||'ar';}catch(e){return 'ar';}})();
+  function t(k){return I18N[lang][k];}
+  function wa(msg){return 'https://wa.me/201000000000?text='+encodeURIComponent(msg);}
+
+  var worksData=[
+    {type:'apartment',img:'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1000&q=80',
+      ar:{city:'القاهرة — التجمع الخامس',title:'شقة بإطلالة مفتوحة وضوء طبيعي',price:'3,180,000 ج.م',specs:['١٦٥ م²','٣ غرف','٢ حمام','جراج مظلل'],story:'شقة في كمبوند هادئ، إضاءة طبيعية بتغمر الصالة طول النهار وإطلالة مباشرة على اللاند سكيب. صوّرناها بإيقاع سكني دافئ يخلي المشتري يتخيّل نفسه عايش فيها قبل ما يزورها.',wa:'سليم، مهتم بالعقار: شقة بإطلالة مفتوحة — التجمع الخامس. عايز تفاصيل أكتر.'},
+      en:{city:'Cairo — New Cairo',title:'Open-view apartment with natural light',price:'3,180,000 EGP',specs:['165 m²','3 rooms','2 baths','Shaded garage'],story:'An apartment in a quiet compound, natural light fills the living room all day with a direct landscape view. We shot it with a warm residential rhythm so the buyer imagines living there before visiting.',wa:'Hello Salem, I am interested in the open-view apartment — New Cairo. I would like more details.'}},
+    {type:'villa',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80',
+      ar:{city:'القاهرة — حدائق أكتوبر',title:'فيلا مستقلة بحديقة وتراس علوي',price:'4,250,000 ج.م',specs:['٣٢٠ م²','٤ غرف','٣ حمام','حديقة خاصة'],story:'فيلا بطابقين وتراس يطل على غروب أكتوبر، وحديقة خلفية للعائلات. قدّمناها بحملة صور درامية + جولة افتراضية خلّت العرض يقفل في أسبوعين.',wa:'سليم، مهتم بالفيلا المستقلة بحديقة — أكتوبر. عايز تفاصيل.'},
+      en:{city:'Cairo — October Gardens',title:'Standalone villa with garden & rooftop',price:'4,250,000 EGP',specs:['320 m²','4 rooms','3 baths','Private garden'],story:'A two-level villa with a rooftop overlooking the October sunset and a backyard for families. We presented it with a dramatic photo campaign + virtual tour, closing the deal in two weeks.',wa:'Hello Salem, interested in the standalone villa with garden — October. More details please.'}},
+    {type:'commercial',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80',
+      ar:{city:'القاهرة — وسط البلد',title:'محل تجاري بواجهة زجاجية',price:'28,000 ج.م / شهر',specs:['٩٥ م²','واجهة ٨م','أمن ٢٤س','مفروش اختياري'],story:'وحدة تجارية في شارع حيوي بنشاط ليلي، تعاقدنا على تصويرها ليلًا وصناعة هوية بصرية للمستأجر المستهدف — واتأجرت بأعلى سعر في العمارة.',wa:'سليم، مهتم بالمحل التجاري بواجهة زجاجية — وسط البلد.'},
+      en:{city:'Cairo — Downtown',title:'Commercial unit with glass facade',price:'28,000 EGP / month',specs:['95 m²','8m facade','24/7 security','Furnished optional'],story:'A commercial unit on a lively street with nightlife. We shot it at night and built a visual identity for the target tenant — rented at the highest price in the building.',wa:'Hello Salem, interested in the commercial unit with glass facade — Downtown.'}},
+    {type:'villa',img:'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1000&q=80',
+      ar:{city:'القاهرة — الشيخ زايد',title:'تاون هاوس بموقع مميز',price:'5,900,000 ج.م',specs:['٢٤٠ م²','٥ غرف','٢ جراج','حديقة'],story:'تاون هاوس على المحور المركزي، حركة مشاة عالية وخدمات على الباب. ركّزنا التصوير على المساحات المشتركة والخصوصية — وأخدت أعلى مشاهدات في أسبوعها الأول.',wa:'سليم، مهتم بالتاون هاوس — الشيخ زايد. عايز تفاصيل.'},
+      en:{city:'Cairo — Sheikh Zayed',title:'Townhouse in prime location',price:'5,900,000 EGP',specs:['240 m²','5 rooms','2 garages','Garden'],story:'A townhouse on the central axis with high foot traffic and services at the door. We focused the shoot on shared spaces and privacy — it got the highest views in its first week.',wa:'Hello Salem, interested in the townhouse — Sheikh Zayed. More details please.'}},
+    {type:'chalet',img:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80',
+      ar:{city:'الساحل الشمالي',title:'شاليه بإطلالة بحر مباشرة',price:'6,750,000 ج.م',specs:['١١٠ م²','٢ حمام','٥٠م للبحر','مفروش'],story:'شاليه صيفي على خط المية، صوّرناه وقت الذهبية عشان نبرز الإطلالة. الجولة الافتراضية خلّت المشتري يشتري من القاهرة من غير ما يزور.',wa:'سليم، مهتم بالشاليه المطل على البحر — الساحل. عايز تفاصيل.'},
+      en:{city:'North Coast',title:'Chalet with direct sea view',price:'6,750,000 EGP',specs:['110 m²','2 baths','50m to sea','Furnished'],story:'A summer chalet on the waterline, shot at golden hour to highlight the view. The virtual tour let the buyer purchase from Cairo without visiting.',wa:'Hello Salem, interested in the sea-view chalet — North Coast. More details.'}},
+    {type:'land',img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80',
+      ar:{city:'القاهرة — العاصمة الإدارية',title:'أرض سكنية نظامية جاهزة',price:'9,400,000 ج.م',specs:['٦٠٠ م²','صبحي جاهر','شارع ٢٠م','ركن'],story:'أرض في حي سكني جديد، البنية التحتية خلصت. عملنا خريطة موقع تفاعلية وفيديو توضيحي للمخطط — وجذبنا مستثمرين في أول شهر.',wa:'سليم، مهتم بالأرض السكنية — العاصمة الإدارية. عايز تفاصيل.'},
+      en:{city:'Cairo — New Capital',title:'Ready residential plot',price:'9,400,000 EGP',specs:['600 m²','Ready utilities','20m street','Corner'],story:'A plot in a new residential district with finished infrastructure. We built an interactive location map and an explanatory video — attracting investors in the first month.',wa:'Hello Salem, interested in the residential plot — New Capital. More details.'}}
+  ];
+  var roman=['I','II','III','IV','V','VI'];
+
+  function renderWorks(){
+    var track=document.getElementById('worksTrack');if(!track)return;track.innerHTML='';
+    worksData.forEach(function(d,i){
+      var a=d[lang];var art=document.createElement('article');art.className='work';art.setAttribute('data-type',d.type);art.style.cursor='none';art.setAttribute('data-cursor',t('view'));
+      var im=document.createElement('img');im.src=d.img;im.alt='';im.setAttribute('loading','lazy');im.setAttribute('onerror',"this.style.display='none'");im.className='clip';
+      var idx=document.createElement('span');idx.className='idx-n';idx.textContent=roman[i];
+      var meta=document.createElement('div');meta.className='meta';meta.innerHTML='<div class="city">'+a.city+'</div><h3>'+a.title+'</h3><div class="price">'+a.price+'</div>';
+      art.appendChild(im);art.appendChild(idx);art.appendChild(meta);
+      art.addEventListener('click',function(){openModal(i);});
+      track.appendChild(art);io.observe(im);
+    });
+    if(typeof calc==='function')calc();
+  }
+  function bindFilters(){
+    var btns=document.querySelectorAll('#filters .fbtn');
+    btns.forEach(function(b){b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+      var f=b.getAttribute('data-filter');
+      document.querySelectorAll('.work').forEach(function(w){w.style.display=(f==='all'||w.getAttribute('data-type')===f)?'':'none';});
+      if(typeof calc==='function')calc();
+    });});
+  }
+  function renderServices(){
+    var ul=document.getElementById('idxList');if(!ul)return;var srv=I18N[lang].srv,imgs=I18N[lang].srvImg;ul.innerHTML='';
+    for(var i=0;i<srv.length;i+=2){
+      var li=document.createElement('li');li.className='idx-row';li.setAttribute('data-img',imgs[i/2]);
+      li.innerHTML='<span class="n">'+('0'+(i/2+1)).slice(-2)+'</span><span class="t">'+srv[i]+'<small>'+srv[i+1]+'</small></span><span class="go">→</span>';
+      ul.appendChild(li);
+    }
+    bindPeek();
+  }
+  function bindPeek(){
+    var peek=document.getElementById('peek'),peekImg=peek?peek.querySelector('img'):null;
+    if(peek&&!touch){
+      document.querySelectorAll('.idx-row').forEach(function(row){
+        row.addEventListener('mouseenter',function(){if(peekImg){peekImg.style.display='';peekImg.src=row.getAttribute('data-img');}peek.style.opacity='1';peek.style.transform='scale(1) rotate(-3deg)';});
+        row.addEventListener('mousemove',function(e){var tw=peek.offsetWidth,th=peek.offsetHeight;var x=Math.min(e.clientX+24,window.innerWidth-tw-10),y=Math.min(Math.max(e.clientY-th/2,10),window.innerHeight-th-10);peek.style.left=x+'px';peek.style.top=y+'px';});
+        row.addEventListener('mouseleave',function(){peek.style.opacity='0';peek.style.transform='scale(.9) rotate(-3deg)';});
+      });
+    }
+  }
+  function renderPricing(){
+    var grid=document.getElementById('priceGrid');if(!grid)return;var pk=I18N[lang].pk;grid.innerHTML='';
+    pk.forEach(function(p,idx){
+      var card=document.createElement('div');card.className='price-card'+(idx===1?' hot':'');
+      card.innerHTML='<span class="tag">'+p.tag+'</span><h3>'+p.name+'</h3><div class="amount">'+p.amt+'</div><ul>'+p.items.map(function(it){return '<li>'+it+'</li>';}).join('')+'</ul><button class="'+((idx===1)?'btn-gold':'btn-line')+'" onclick="document.getElementById(\'contact\').scrollIntoView()">'+p.btn+'</button>';
+      grid.appendChild(card);
+    });
+  }
+
+  /* property modal + 360 tour (16) */
+  var modal=document.getElementById('propertyModal'),mImg=document.getElementById('mImg'),mCity=document.getElementById('mCity'),mTitle=document.getElementById('mTitle'),mPrice=document.getElementById('mPrice'),mSpecs=document.getElementById('mSpecs'),mStory=document.getElementById('mStory'),mCta=document.getElementById('mCta'),mTour=document.getElementById('mTour');
+  var pano=document.getElementById('mPano'),panoImg=document.getElementById('mPanoImg'),panoHint=document.getElementById('mPanoHint'),panoOn=false,px=0,pdrag=false,psx=0;
+  function panoMax(){return Math.max(0,(panoImg.offsetWidth||0)-(pano.offsetWidth||0));}
+  function openModal(i){var d=worksData[i];if(!d)return;var a=d[lang];var w=document.querySelectorAll('.work')[i];var img=w&&w.querySelector('img');if(mImg&&img)mImg.src=img.src;mCity.textContent=a.city;mTitle.textContent=a.title;mPrice.textContent=a.price;mSpecs.innerHTML=a.specs.map(function(s){return '<li>'+s+'</li>';}).join('');mStory.textContent=a.story;if(mCta)mCta.href=wa(a.wa);if(panoImg)panoImg.src=d.img;panoOn=false;pano.classList.remove('on','grab');px=0;if(panoImg)panoImg.style.transform='translateX(0)';modal.classList.add('open');modal.setAttribute('aria-hidden','false');if(lenis)lenis.stop();document.body.style.overflow='hidden';}
+  function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');if(lenis)lenis.start();document.body.style.overflow='';panoOn=false;pano.classList.remove('on','grab');}
+  if(modal){modal.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeModal);});}
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+  if(mTour){mTour.addEventListener('click',function(){panoOn=!panoOn;pano.classList.toggle('on',panoOn);if(panoOn){setTimeout(function(){px=0;panoImg.style.transform='translateX(0)';},20);}else{pano.classList.remove('grab');}});}
+  if(pano){
+    pano.addEventListener('mousedown',function(e){if(!panoOn)return;pdrag=true;psx=e.clientX;pano.classList.add('grab');});
+    pano.addEventListener('mousemove',function(e){if(!pdrag||!panoOn)return;px+=(e.clientX-psx);psx=e.clientX;var m=panoMax();px=Math.max(-m,Math.min(0,px));panoImg.style.transform='translateX('+px+'px)';});
+    pano.addEventListener('touchstart',function(e){if(!panoOn)return;pdrag=true;psx=e.touches[0].clientX;},{passive:true});
+    pano.addEventListener('touchmove',function(e){if(!pdrag||!panoOn)return;px+=(e.touches[0].clientX-psx);psx=e.touches[0].clientX;var m=panoMax();px=Math.max(-m,Math.min(0,px));panoImg.style.transform='translateX('+px+'px)';e.preventDefault();},{passive:false});
+  }
+  addEventListener('mouseup',function(){pdrag=false;pano.classList.remove('grab');});
+  addEventListener('touchend',function(){pdrag=false;pano.classList.remove('grab');});
+
+  function applyI18n(){
+    document.documentElement.lang=lang;document.documentElement.dir=(lang==='ar'?'rtl':'ltr');
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k=el.getAttribute('data-i18n');var v=I18N[lang][k];if(v===undefined)return;
+      var tag=el.tagName;
+      if(tag==='INPUT'||tag==='TEXTAREA'){el.setAttribute('placeholder',v);}
+      else if(tag==='SELECT'){el.innerHTML='<option value="">'+v+'</option>'+I18N[lang].f_opt.map(function(o){return '<option>'+o+'</option>';}).join('');}
+      else{el.innerHTML=v;}
+    });
+    renderServices();renderPricing();renderWorks();bindFilters();buildTesti();renderProc();renderFaq();renderMarq();
+    document.querySelectorAll('.wa-link').forEach(function(a){a.href=wa(t('wa_def'));});
+    if(document.getElementById('langToggle'))document.getElementById('langToggle').textContent=(lang==='ar'?'EN':'ع');
+  }
+  var langToggle=document.getElementById('langToggle');
+  if(langToggle){langToggle.addEventListener('click',function(){lang=(lang==='ar'?'en':'ar');try{localStorage.setItem('salem_lang',lang);}catch(e){}applyI18n();});}
+  /* ===== visual richness ===== */
+  (function(){
+    if(touch||reduce)return;
+    var tc=document.getElementById('trail');if(!tc)return;var tx=tc.getContext('2d');
+    var tw,th,dpr=Math.min(devicePixelRatio||1,1.5);
+    function trs(){tw=tc.clientWidth;th=tc.clientHeight;tc.width=tw*dpr;tc.height=th*dpr;tx.setTransform(dpr,0,0,dpr,0,0);}
+    trs();addEventListener('resize',trs);
+    var parts=[];
+    addEventListener('mousemove',function(e){parts.push({x:e.clientX,y:e.clientY,a:1,s:Math.random()*2+1});if(parts.length>45)parts.shift();},{passive:true});
+    (function tl(){tx.clearRect(0,0,tw,th);for(var i=0;i<parts.length;i++){var p=parts[i];p.a-=.035;if(p.a<=0){parts.splice(i,1);i--;continue;}tx.beginPath();tx.arc(p.x,p.y,p.s,0,6.283);tx.fillStyle='rgba(201,182,140,'+(p.a*.5)+')';tx.fill();}requestAnimationFrame(tl);})();
+  })();
+
+  (function(){
+    var sl=document.getElementById('baSlider'),hb=document.getElementById('baBefore'),hd=document.getElementById('baHandle');
+    if(!sl||!hb||!hd)return;var drag=false;
+    function setPct(p){p=Math.max(0,Math.min(100,p));hb.style.clipPath='inset(0 '+(100-p)+'% 0 0)';hd.style.left=p+'%';}
+    function fromX(x){var r=sl.getBoundingClientRect();setPct((x-r.left)/r.width*100);}
+    sl.addEventListener('mousedown',function(e){drag=true;fromX(e.clientX);});
+    addEventListener('mouseup',function(){drag=false;});
+    addEventListener('mousemove',function(e){if(drag)fromX(e.clientX);});
+    sl.addEventListener('touchstart',function(e){drag=true;fromX(e.touches[0].clientX);},{passive:true});
+    sl.addEventListener('touchmove',function(e){if(drag){fromX(e.touches[0].clientX);e.preventDefault();}},{passive:false});
+    addEventListener('touchend',function(){drag=false;});
+  })();
+
+  var qCur=0,qTimer;
+  function buildTesti(){
+    var wrap=document.getElementById('qWrap'),dots=document.getElementById('qDots');if(!wrap)return;
+    var T=I18N[lang].testi;wrap.innerHTML='';dots.innerHTML='';
+    T.forEach(function(t,i){
+      var s=document.createElement('div');s.className='qslide'+(i===qCur?' on':'');
+      s.innerHTML='<div class="qbig"><span class="mk">“</span> '+t.q+' <span class="mk">”</span></div><div class="qby"><div class="av">'+t.av+'</div><div><b>'+t.n+'</b><span>'+t.r+'</span></div></div>';
+      wrap.appendChild(s);
+      var d=document.createElement('button');d.className=(i===qCur?'on':'');d.setAttribute('data-cursor','');d.addEventListener('click',function(){qGo(i);});dots.appendChild(d);
+    });
+  }
+  function qGo(i){var T=I18N[lang].testi;qCur=(i+T.length)%T.length;var wrap=document.getElementById('qWrap');var ss=wrap.querySelectorAll('.qslide');ss.forEach(function(el,k){el.classList.toggle('on',k===qCur);});var dots=document.getElementById('qDots');var dd=dots.querySelectorAll('button');dd.forEach(function(el,k){el.classList.toggle('on',k===qCur);});qRestart();}
+  function qNext(){qGo(qCur+1);}function qPrev(){qGo(qCur-1);}
+  function qRestart(){clearInterval(qTimer);qTimer=setInterval(qNext,6000);}
+  var qn=document.getElementById('qNext'),qp=document.getElementById('qPrev');
+  if(qn)qn.addEventListener('click',qNext);if(qp)qp.addEventListener('click',qPrev);
+
+  function renderProc(){
+    var c=document.getElementById('procSteps');if(!c)return;var S=I18N[lang].steps;c.innerHTML='';
+    S.forEach(function(s,i){var d=document.createElement('div');d.className='step';d.innerHTML='<div class="n">'+(i+1)+'</div><div class="body"><h3>'+s.t+'</h3><p>'+s.d+'</p></div>';c.appendChild(d);});
+    if('IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on');});},{threshold:.25});c.querySelectorAll('.step').forEach(function(s){io.observe(s);});}
+  }
+  function renderFaq(){
+    var c=document.getElementById('faqList');if(!c)return;var F=I18N[lang].faqs;c.innerHTML='';
+    F.forEach(function(f){var it=document.createElement('div');it.className='faq-item';it.innerHTML='<button class="faq-q">'+f.q+'<span class="ic"></span></button><div class="faq-a"><p>'+f.a+'</p></div>';var q=it.querySelector('.faq-q');q.addEventListener('click',function(){var open=it.classList.contains('open');c.querySelectorAll('.faq-item').forEach(function(x){x.classList.remove('open');});if(!open)it.classList.add('open');});c.appendChild(it);});
+  }
+  function renderMarq(){
+    var t=document.getElementById('marqTrack');if(!t)return;var m=I18N[lang].marq;var html=m.map(function(x){return '<span>'+x+'</span>';}).join('');t.innerHTML=html+html;
+  }
+
+  var CITIES=[
+    {n:'القاهرة',x:52,y:58,hub:true},{n:'الإسكندرية',x:34,y:34},{n:'الجيزة',x:46,y:57},
+    {n:'مدينة نصر',x:55,y:55},{n:'القاهرة الجديدة',x:61,y:60},{n:'الشيخ زايد',x:43,y:54},
+    {n:'أكتوبر',x:40,y:57},{n:'المعادي',x:50,y:62},{n:'الرحاب',x:63,y:56},
+    {n:'الساحل الشمالي',x:27,y:43},{n:'الغردقة',x:67,y:71},{n:'شرم الشيخ',x:75,y:79}
+  ];
+  function renderCoverage(){
+    var svg=document.getElementById('mapSvg'),leg=document.getElementById('mapLegend');if(!svg)return;
+    var ns='http://www.w3.org/2000/svg',hub=CITIES[0];
+    CITIES.forEach(function(c){if(c.hub)return;var ln=document.createElementNS(ns,'line');ln.setAttribute('x1',hub.x);ln.setAttribute('y1',hub.y);ln.setAttribute('x2',c.x);ln.setAttribute('y2',c.y);svg.appendChild(ln);});
+    CITIES.forEach(function(c){var g=document.createElementNS(ns,'g');g.setAttribute('class','city');
+      var ring=document.createElementNS(ns,'circle');ring.setAttribute('class','ring');ring.setAttribute('cx',c.x);ring.setAttribute('cy',c.y);ring.setAttribute('r',1.4);
+      var dot=document.createElementNS(ns,'circle');dot.setAttribute('class','dot');dot.setAttribute('cx',c.x);dot.setAttribute('cy',c.y);dot.setAttribute('r',1.2);
+      var t=document.createElementNS(ns,'text');t.setAttribute('x',c.x);t.setAttribute('y',c.y-2.6);t.setAttribute('text-anchor','middle');t.textContent=c.n;
+      g.appendChild(ring);g.appendChild(dot);g.appendChild(t);svg.appendChild(g);});
+    if(leg)leg.innerHTML=CITIES.map(function(c){return '<span>'+c.n+'</span>';}).join('');
+  }
+
+  /* feed filter */
+  (function(){
+    var btns=document.querySelectorAll('#feedFilters .fbtn');
+    btns.forEach(function(b){b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+      var f=b.getAttribute('data-filter');
+      document.querySelectorAll('#feedGrid figure').forEach(function(fig){fig.style.display=(f==='all'||fig.getAttribute('data-type')===f)?'':'none';});
+    });});
+  })();
+
+  renderCoverage();
+
+  /* count-up stats */
+  (function(){
+    function arNum(n){return String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d];});}
+    var els=document.querySelectorAll('.cu');
+    if(!('IntersectionObserver'in window)){els.forEach(function(el){el.textContent=arNum(el.getAttribute('data-count'))+(el.getAttribute('data-suffix')||'');});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;io.unobserve(el);var to=parseInt(el.getAttribute('data-count'),10);var suf=el.getAttribute('data-suffix')||'';var dur=1500,start=null;function step(ts){if(!start)start=ts;var p=Math.min(1,(ts-start)/dur);var v=Math.round((1-Math.pow(1-p,3))*to);el.textContent=arNum(v)+suf;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}});},{threshold:.4});
+    els.forEach(function(el){io.observe(el);});
+  })();
+
+  /* process timeline fill */
+  (function(){
+    var psteps=document.querySelector('.proc-steps');if(!psteps)return;
+    var ticking=false;
+    function onScroll(){
+      var r=psteps.getBoundingClientRect();var p=(window.innerHeight*0.5-r.top)/r.height;p=Math.max(0,Math.min(1,p));psteps.style.setProperty('--pp',(p*100)+'%');
+      ticking=false;
+    }
+    addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+    onScroll();
+  })();
+
+  /* mobile nav + to-top */
+  (function(){
+    var tg=document.getElementById('navToggle'),mn=document.getElementById('mobileNav'),tt=document.getElementById('toTop');
+    if(tg&&mn){tg.addEventListener('click',function(){var o=mn.classList.toggle('open');tg.classList.toggle('open',o);});mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');tg.classList.remove('open');});});}
+    if(tt){tt.addEventListener('click',function(){if(lenis)lenis.scrollTo(0);else window.scrollTo({top:0,behavior:'smooth'});});}
+    addEventListener('scroll',function(){if(tt)tt.classList.toggle('show',(window.pageYOffset||document.documentElement.scrollTop)>600);},{passive:true});
+  })();
+
+  /* reel play/sound */
+  (function(){
+    var v=document.getElementById('reelVideo'),b=document.getElementById('reelPlay');
+    if(!v||!b)return;
+    b.addEventListener('click',function(){if(v.muted){v.muted=false;v.play();b.textContent='❚❚';b.classList.add('on');}else{v.muted=true;b.textContent='▶';b.classList.remove('on');}});
+    v.addEventListener('click',function(){if(v.paused)v.play();else v.pause();});
+  })();
+
+  applyI18n();
+  qRestart();
+
+  /* contact form */
+  var cf=document.getElementById('contactForm');
+  if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var btn=cf.querySelector('button[type=submit]');if(btn){btn.disabled=true;btn.textContent='جارٍ الإرسال...';}setTimeout(function(){cf.classList.add('done');cf.innerHTML='<div class="ok">شكرًا لتواصلك مع <b>سليم</b></div><p>هنتصل بيك خلال ساعتين لتقييم عقارك مجانًا.</p>';},1200);});}
+})();
+</script>
+</body>
+</html>
